@@ -1,0 +1,1926 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Audrey Eco Exam — des examens sans papier</title>
+<meta name="description" content="Audrey Eco Exam : démonstration interactive d’examens sans papier. Créer un examen, le passer sur téléphone ou ordinateur, écrire, dessiner, corriger et surveiller.">
+<meta name="theme-color" content="#f3f5ee">
+<meta property="og:title" content="Audrey Eco Exam — des examens sans papier">
+<meta property="og:description" content="Créer, passer et corriger un examen sans une seule feuille.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23167a57'/%3E%3Cg transform='translate(4.2 4.2) scale(.65)' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,400..700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('aee.theme');if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
+<style>
+/* =========================================================
+   Audrey Eco Exam — feuille de style
+   ========================================================= */
+:root{
+  --bg:#f3f5ee; --bg-glass:rgba(243,245,238,.86); --surface:#ffffff; --surface-2:#eef3eb; --seg-on:#ffffff;
+  --ink:#13271e; --ink-2:#4b5f54; --ink-3:#627469;
+  --line:#dce4d9; --line-2:#c6d3c7;
+  --brand:#167a57; --brand-strong:#0e5c41; --brand-soft:#dff0e6; --on-brand:#ffffff;
+  --accent:#c9ec6b; --accent-hl:#d9f28e; --on-accent:#1c2b0a;
+  --ok:#167a57; --ok-soft:#dff0e6;
+  --danger:#b42318; --danger-soft:#fce9e7; --on-danger:#ffffff;
+  --warn:#8a5300; --warn-soft:#fff1d2;
+  --focus:rgba(22,122,87,.55); --focus-soft:rgba(22,122,87,.16);
+  --toast-bg:#13271e; --toast-fg:#f3f5ee;
+  --sh-1:0 1px 2px rgba(19,39,30,.06),0 1px 3px rgba(19,39,30,.05);
+  --sh-2:0 14px 34px -14px rgba(19,39,30,.25),0 2px 6px rgba(19,39,30,.05);
+  --r-sm:10px; --r:14px; --r-lg:22px;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1511; --bg-glass:rgba(13,21,17,.86); --surface:#141f19; --surface-2:#1a2820; --seg-on:#24392e;
+    --ink:#e5eee7; --ink-2:#a9bab0; --ink-3:#8b9c92;
+    --line:#25352c; --line-2:#33473c;
+    --brand:#4fc394; --brand-strong:#7bd9b1; --brand-soft:#16352a; --on-brand:#06241a;
+    --accent:#c9ec6b; --accent-hl:rgba(201,236,107,.26); --on-accent:#1c2b0a;
+    --ok:#4fc394; --ok-soft:#16352a;
+    --danger:#ff8a7e; --danger-soft:#3b1a17; --on-danger:#2a0d0a;
+    --warn:#f5be55; --warn-soft:#352812;
+    --focus:rgba(79,195,148,.6); --focus-soft:rgba(79,195,148,.18);
+    --toast-bg:#e5eee7; --toast-fg:#0d1511;
+    --sh-1:0 1px 2px rgba(0,0,0,.35);
+    --sh-2:0 18px 40px -18px rgba(0,0,0,.7),0 2px 6px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1511; --bg-glass:rgba(13,21,17,.86); --surface:#141f19; --surface-2:#1a2820; --seg-on:#24392e;
+  --ink:#e5eee7; --ink-2:#a9bab0; --ink-3:#8b9c92;
+  --line:#25352c; --line-2:#33473c;
+  --brand:#4fc394; --brand-strong:#7bd9b1; --brand-soft:#16352a; --on-brand:#06241a;
+  --accent:#c9ec6b; --accent-hl:rgba(201,236,107,.26); --on-accent:#1c2b0a;
+  --ok:#4fc394; --ok-soft:#16352a;
+  --danger:#ff8a7e; --danger-soft:#3b1a17; --on-danger:#2a0d0a;
+  --warn:#f5be55; --warn-soft:#352812;
+  --focus:rgba(79,195,148,.6); --focus-soft:rgba(79,195,148,.18);
+  --toast-bg:#e5eee7; --toast-fg:#0d1511;
+  --sh-1:0 1px 2px rgba(0,0,0,.35);
+  --sh-2:0 18px 40px -18px rgba(0,0,0,.7),0 2px 6px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:96px}
+body{margin:0;font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{line-height:1.2;margin:0 0 .5em;color:var(--ink)}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(1.9rem,4vw,2.5rem);letter-spacing:-.01em;font-variation-settings:"opsz" 96}
+h2{font-family:var(--f-display);font-weight:600;font-size:1.45rem;font-variation-settings:"opsz" 48}
+h3{font-size:1.06rem;font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--brand)}
+button,input,textarea,select{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h1:focus{outline:none}
+.ic{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-80px;z-index:200;background:var(--brand);color:var(--on-brand);padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
+.muted{color:var(--ink-2)}
+.hint{color:var(--ink-3);font-size:.88rem;margin:0}
+.center{text-align:center}
+.small{font-size:.88rem}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:44px;padding:.6em 1.1em;border-radius:12px;border:1.5px solid transparent;font-weight:700;font-size:.98rem;line-height:1.2;text-decoration:none;cursor:pointer;transition:background-color .18s var(--ease),border-color .18s,color .18s,transform .12s,box-shadow .18s;touch-action:manipulation;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--brand);color:var(--on-brand);box-shadow:0 8px 18px -10px var(--brand)}
+.btn-primary:hover{background:var(--brand-strong)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+.btn-soft{background:var(--brand-soft);color:var(--brand-strong)}
+.btn-soft:hover{border-color:var(--brand)}
+.btn-danger{background:var(--danger);color:var(--on-danger)}
+.btn-danger:hover{filter:brightness(.92)}
+.btn-danger-ghost{background:var(--surface);color:var(--danger);border-color:var(--line-2)}
+.btn-danger-ghost:hover{background:var(--danger-soft);border-color:var(--danger)}
+.btn-lg{min-height:52px;padding:.8em 1.4em;font-size:1.05rem;border-radius:14px}
+.btn-sm{min-height:38px;padding:.4em .8em;font-size:.9rem;border-radius:10px}
+.btn-block{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.icon-btn{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--ink-2);cursor:pointer;flex:none;transition:background-color .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.icon-btn:hover{background:var(--surface-2);color:var(--ink)}
+.icon-btn.danger:hover{background:var(--danger-soft);color:var(--danger)}
+.icon-btn:disabled{opacity:.35;cursor:not-allowed;background:transparent}
+@media (pointer:coarse){.icon-btn{width:44px;height:44px}.btn-sm{min-height:42px}}
+
+/* ---------- En-tête ---------- */
+.topbar{position:sticky;top:0;z-index:40;background:var(--bg-glass);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;min-height:66px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--f-display);font-weight:600;font-size:1.22rem;letter-spacing:-.01em}
+.brand-mark{width:36px;height:36px;border-radius:11px;background:var(--brand);color:var(--on-brand);display:grid;place-items:center}
+.brand-mark .ic{width:20px;height:20px}
+.brand-name em{font-style:italic;color:var(--brand)}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;color:var(--ink-2);text-decoration:none;font-weight:700;font-size:.95rem;transition:background-color .15s,color .15s}
+.nav a:hover{color:var(--ink);background:var(--surface-2)}
+.nav a[aria-current="page"]{background:var(--brand-soft);color:var(--brand-strong)}
+.theme-toggle{border:1px solid var(--line-2);background:var(--surface)}
+@media (max-width:760px){
+  /* le flou crée un bloc conteneur : sans ça, la barre « fixe » du bas resterait collée à l’en-tête */
+  .topbar{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--bg)}
+  .topbar .wrap{min-height:58px}
+  .theme-toggle{margin-left:auto}
+  .nav{position:fixed;left:0;right:0;bottom:0;margin:0;justify-content:space-around;gap:0;background:var(--surface);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom));z-index:40;box-shadow:0 -6px 20px -12px rgba(0,0,0,.25)}
+  .nav a{flex:1;flex-direction:column;gap:3px;font-size:.75rem;padding:7px 4px;border-radius:12px;min-width:0}
+  .nav a .ic{width:22px;height:22px}
+  body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+}
+
+/* ---------- Mise en page ---------- */
+main{flex:1;width:100%;max-width:1180px;margin:0 auto;padding:32px 20px 64px}
+.view{animation:viewIn .28s var(--ease)}
+@keyframes viewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.page-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.page-head h1{margin-bottom:.25em}
+.head-actions{display:flex;flex-wrap:wrap;gap:10px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;color:var(--brand);margin:0 0 10px}
+.lead-sm{color:var(--ink-2);margin:0;max-width:62ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-1)}
+@media (min-width:760px){.card{padding:28px}}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.card-head h2{margin:0}
+.narrow{max-width:480px;margin:0 auto}
+.narrow.wide{max-width:780px}
+.count{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--surface-2);font-size:.8rem;font-weight:700;color:var(--ink-2)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.tag-accent{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.chip-ok{background:var(--ok-soft);color:var(--brand-strong)}
+.chip-todo{background:var(--accent-hl);color:var(--ink)}
+.chip-warn{background:var(--warn-soft);color:var(--warn)}
+.empty{text-align:center;padding:36px 16px;color:var(--ink-2)}
+.empty > .ic{width:38px;height:38px;color:var(--ink-3);margin:0 auto 10px;display:block}
+.empty strong{display:block;color:var(--ink);margin-bottom:4px}
+.empty p{margin:0 0 14px}
+.empty.dashed{border:1.5px dashed var(--line-2);border-radius:18px;margin-bottom:14px}
+
+/* ---------- Formulaires ---------- */
+.field{display:flex;flex-direction:column;gap:6px;margin:0 0 16px;min-width:0;border:0;padding:0}
+.field > label,.field > legend{font-weight:700;font-size:.92rem;color:var(--ink)}
+fieldset.field > legend{padding:0;margin-bottom:6px}
+.req{color:var(--danger)}
+input[type=text],input:not([type]),input[type=number],textarea,select{width:100%;min-height:46px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);transition:border-color .15s,box-shadow .15s,background-color .15s}
+textarea{min-height:96px;resize:vertical;line-height:1.5}
+input:hover,textarea:hover,select:hover{border-color:var(--ink-3)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--focus-soft)}
+input[readonly],textarea[readonly]{background:var(--surface-2)}
+::placeholder{color:var(--ink-3);opacity:.85}
+select{appearance:none;-webkit-appearance:none;padding-right:42px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23627469' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px}
+.invalid{border-color:var(--danger)!important;background-color:var(--danger-soft)!important}
+.field-err{color:var(--danger);font-size:.88rem;font-weight:700;margin:0}
+.field-err:empty{display:none}
+.check{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--ink);cursor:pointer;min-height:44px}
+.check input{width:20px;height:20px;accent-color:var(--brand);flex:none;cursor:pointer}
+.form-grid{display:grid;grid-template-columns:1fr;gap:0 16px}
+@media (min-width:640px){.form-grid{grid-template-columns:1fr 1fr}.span-2{grid-column:1/-1}}
+
+/* Contrôle segmenté (boutons radio stylés) */
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);max-width:100%}
+.seg-opt{position:relative;display:block}
+.seg-opt input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.seg-opt > span{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 14px;border-radius:10px;font-weight:700;font-size:.92rem;color:var(--ink-2);transition:background-color .15s,color .15s,box-shadow .15s;pointer-events:none}
+.seg-opt:hover input:not(:checked) + span{color:var(--ink)}
+.seg-opt input:checked + span{background:var(--seg-on);color:var(--brand-strong);box-shadow:var(--sh-1)}
+.seg-opt input:focus-visible + span{outline:3px solid var(--focus);outline-offset:1px}
+.seg-sm .seg-opt > span{min-height:36px;padding:6px 11px;font-size:.86rem}
+.l-short{display:none}
+@media (max-width:600px){.l-full{display:none}.l-short{display:inline}}
+
+/* ---------- Accueil ---------- */
+.hero{display:grid;gap:40px;align-items:center;padding:8px 0 40px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:960px){.hero{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);padding:28px 0 64px;gap:48px}}
+.hero h1{font-size:clamp(2.25rem,5.4vw,3.75rem);line-height:1.04;letter-spacing:-.025em;margin-bottom:20px;font-variation-settings:"opsz" 144}
+.hl{background-image:linear-gradient(transparent 60%,var(--accent-hl) 60%,var(--accent-hl) 92%,transparent 92%);padding:0 .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.lead{font-size:1.15rem;color:var(--ink-2);max-width:54ch;margin-bottom:0}
+.hero-cta{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin:28px 0 22px}
+.hero-links{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:520px){.hero-cta{align-items:stretch}.hero-cta .btn{white-space:normal;text-align:center}.hero-links .btn{flex:1 1 140px}}
+.btn{max-width:100%}
+.eco-line{display:flex;align-items:center;gap:10px;color:var(--ink-2);font-size:.95rem;padding:10px 14px;border-radius:12px;background:var(--surface);border:1.5px dashed var(--line-2);width:fit-content;max-width:100%;margin:0}
+.eco-line .ic{color:var(--brand)}
+.eco-line strong{color:var(--ink)}
+.hero-visual{position:relative;min-height:575px;display:grid;place-items:start center;padding:62px 0 0}
+.hero-visual::before{content:"";position:absolute;inset:0;border-radius:32px;background-image:radial-gradient(var(--line-2) 1.3px,transparent 1.3px);background-size:18px 18px;-webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent);mask-image:radial-gradient(closest-side,#000 55%,transparent)}
+.mock{position:relative;width:min(390px,92%);background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--sh-2);transform:rotate(-1.5deg)}
+.mock-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.mock-pill{font-size:.78rem;font-weight:700;color:var(--brand-strong);background:var(--brand-soft);padding:4px 10px;border-radius:999px}
+.mock-timer{font-family:var(--f-mono);font-size:.85rem;font-weight:700;display:inline-flex;gap:6px;align-items:center;color:var(--ink-2)}
+.mock-progress{height:6px;border-radius:9px;background:var(--surface-2);overflow:hidden;margin-bottom:16px}
+.mock-progress span{display:block;height:100%;width:25%;background:var(--brand);border-radius:inherit}
+.mock-q{font-weight:700;font-size:1.02rem;line-height:1.35;margin-bottom:14px}
+.mock-opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;margin-bottom:8px;font-size:.93rem}
+.mock-opt b{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:.8rem;background:var(--surface-2);color:var(--ink-2);flex:none}
+.mock-opt.is-on{border-color:var(--brand);background:var(--brand-soft)}
+.mock-opt.is-on b{background:var(--brand);color:var(--on-brand)}
+.mock-btn{margin-top:14px;display:flex;justify-content:center;align-items:center;gap:8px;background:var(--brand);color:var(--on-brand);border-radius:12px;padding:11px;font-weight:700;font-size:.93rem}
+.mock-float{position:absolute;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--sh-2);font-weight:700;font-size:.9rem;animation:floaty 7s ease-in-out infinite}
+.mock-float.f1{top:6px;right:2%;--r:3deg;color:var(--brand-strong)}
+.mock-float.f1 .ic{background:var(--brand);color:var(--on-brand);border-radius:50%;padding:3px;width:22px;height:22px}
+.mock-float.f2{bottom:22px;left:2%;--r:-3deg;animation-delay:-2s}
+.mock-float.f2 strong{font-family:var(--f-display);font-size:1.7rem;line-height:1;color:var(--brand)}
+.mock-sketch{position:absolute;bottom:0;right:4%;width:132px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 8px 6px;box-shadow:var(--sh-2);transform:rotate(4deg)}
+.mock-sketch small{display:block;text-align:center;font-size:.7rem;color:#627469;font-weight:700}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-6px) rotate(var(--r,0deg))}}
+@media (max-width:520px){.hero-visual{min-height:470px;padding-top:58px}.mock-sketch{display:none}.mock-float.f1{right:0;top:4px}.mock-float.f2{left:0;bottom:8px}}
+.section{padding:36px 0}
+.section > h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:6px}
+.section > .lead-sm{margin-bottom:22px}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px}
+.step-n{font-family:var(--f-display);font-size:2.6rem;font-weight:600;color:var(--brand);line-height:1;display:block;margin-bottom:14px;font-variation-settings:"opsz" 144}
+.steps p,.features p{color:var(--ink-2);margin:0;font-size:.98rem}
+.features{list-style:none;padding:0;margin:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.features li{padding:22px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line)}
+.feat-ic{width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;margin-bottom:14px}
+.feat-ic .ic{width:22px;height:22px}
+.callout{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:var(--r);background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);font-size:.95rem;margin-top:16px}
+.callout > .ic{color:var(--brand);margin-top:3px}
+.callout strong{color:var(--ink)}
+
+/* ---------- Espace professeur ---------- */
+.prof-grid{display:grid;gap:20px;align-items:start;grid-template-columns:minmax(0,1fr)}
+@media (min-width:1040px){.prof-grid{grid-template-columns:minmax(0,1fr) 370px}.side{position:sticky;top:90px}}
+.saved{font-size:.85rem;color:var(--ink-3);display:inline-flex;align-items:center;gap:6px}
+.q-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:10px 0 14px;padding-top:20px;border-top:1px solid var(--line)}
+.q-head h2{margin:0}
+.qcard{border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;background:var(--surface);transition:border-color .15s,box-shadow .15s}
+.qcard:focus-within{border-color:var(--line-2);box-shadow:var(--sh-2)}
+.qcard-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+.qnum{width:32px;height:32px;border-radius:10px;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font-weight:700;font-size:.95rem;flex:none}
+.qnum.sm{width:26px;height:26px;font-size:.82rem;border-radius:8px}
+.qtools{margin-left:auto;display:flex;gap:2px}
+.qcard-grid{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:0 14px}
+@media (max-width:560px){.qcard-grid{grid-template-columns:minmax(0,1fr)}.qtools{margin-left:0;width:100%;justify-content:flex-end;order:3}}
+.opt-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.opt-row input[type=text]{flex:1;min-width:0}
+.opt-correct{position:relative;flex:none;width:42px;height:42px;display:grid;place-items:center;cursor:pointer}
+.opt-correct input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.opt-correct .mark{width:26px;height:26px;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;color:transparent;transition:background-color .15s,border-color .15s,color .15s;pointer-events:none}
+.opt-correct .mark .ic{width:15px;height:15px;stroke-width:3}
+.opt-correct:hover .mark{border-color:var(--brand)}
+.opt-correct input:checked + .mark{background:var(--ok);border-color:var(--ok);color:var(--on-brand)}
+.opt-correct input:focus-visible + .mark{outline:3px solid var(--focus);outline-offset:2px}
+.add-opt{align-self:flex-start;margin-left:48px}
+.add-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:14px;border:1.5px dashed var(--line-2);border-radius:16px}
+.add-row > span{font-weight:700;color:var(--ink-2);font-size:.92rem;margin-right:4px}
+.editor-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.exam-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.exam-item{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--surface)}
+.exam-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.exam-item h3{margin:0 0 2px;font-size:1rem}
+.meta{color:var(--ink-3);font-size:.86rem;margin:0}
+.exam-item-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;align-items:center}
+.code-chip{font-family:var(--f-mono);font-weight:700;font-size:.9rem;letter-spacing:.06em;display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;background:var(--brand-soft);color:var(--brand-strong);border:1.5px dashed var(--brand);cursor:pointer;min-height:38px}
+.code-chip:hover{background:var(--surface)}
+
+/* ---------- Espace élève ---------- */
+.student-card{padding:30px}
+.badge-ic{width:54px;height:54px;border-radius:16px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;margin-bottom:16px}
+.badge-ic .ic{width:26px;height:26px}
+.student-card .lead-sm{margin-bottom:22px}
+.code-input{font-family:var(--f-mono)!important;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:1.1rem!important}
+.code-input::placeholder{letter-spacing:.14em}
+.or{display:flex;align-items:center;gap:12px;color:var(--ink-3);font-size:.85rem;margin:18px 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.under-note{margin-top:14px}
+
+/* ---------- Examen en cours ---------- */
+body[data-view="examen"] .topbar,body[data-view="examen"] .foot{display:none}
+body[data-view="examen"]{padding-bottom:0}
+body[data-view="examen"] main{padding-top:0}
+.exam-bar{position:sticky;top:0;z-index:30;margin:0 -20px 20px;padding:12px 20px 0;background:var(--bg-glass);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.exam-bar-in{display:flex;align-items:center;gap:12px;max-width:820px;margin:0 auto;padding-bottom:12px}
+.exam-logo{width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;flex:none}
+.exam-id{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+.exam-id strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exam-id span{font-size:.88rem}
+.exam-chips{margin-left:auto;display:flex;gap:8px;align-items:center;flex:none}
+.timer{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-weight:700;font-size:1.1rem;padding:7px 13px;border-radius:12px;background:var(--surface);border:1.5px solid var(--line-2);font-variant-numeric:tabular-nums;transition:background-color .2s,border-color .2s,color .2s}
+.timer.warn{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.timer.danger{background:var(--danger-soft);border-color:var(--danger);color:var(--danger);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.6}}
+.progress{height:4px;background:var(--line);margin:0 -20px}
+.progress span{display:block;height:100%;background:var(--brand);transform-origin:left;transform:scaleX(var(--p,0));transition:transform .35s var(--ease)}
+.exam-wrap{max-width:820px;margin:0 auto}
+.qnav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.dot{width:42px;height:42px;border-radius:12px;border:1.5px solid var(--line-2);background:var(--surface);font-weight:700;color:var(--ink-2);cursor:pointer;display:grid;place-items:center;transition:background-color .15s,border-color .15s,color .15s}
+.dot:hover{border-color:var(--brand)}
+.dot.done{background:var(--brand-soft);border-color:transparent;color:var(--brand-strong)}
+.dot.locked{background:var(--brand);color:var(--on-brand);border-color:transparent}
+.dot.current{border-color:var(--brand);box-shadow:0 0 0 3px var(--focus-soft);color:var(--ink)}
+.dot.locked.current{color:var(--on-brand)}
+.q-card{padding:26px}
+@media (min-width:760px){.q-card{padding:32px}}
+.q-meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.q-text{font-family:var(--f-body);font-size:clamp(1.2rem,2.4vw,1.45rem);font-weight:700;line-height:1.38;margin-bottom:20px;white-space:pre-line}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{position:relative;display:flex;align-items:center;gap:14px;padding:13px 16px;border:1.5px solid var(--line-2);border-radius:14px;cursor:pointer;transition:border-color .15s,background-color .15s;min-height:58px}
+.choice:hover{border-color:var(--brand)}
+.choice input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.choice-mark{flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-weight:700;background:var(--surface-2);color:var(--ink-2);transition:background-color .15s,color .15s;pointer-events:none}
+.choice-text{pointer-events:none}
+.choice.is-on{border-color:var(--brand);background:var(--brand-soft)}
+.choice.is-on .choice-mark{background:var(--brand);color:var(--on-brand)}
+.choice:focus-within{outline:3px solid var(--focus);outline-offset:2px}
+.choice.is-correct{border-color:var(--ok);background:var(--ok-soft)}
+.choice.is-correct .choice-mark{background:var(--ok);color:var(--on-brand)}
+.choice.is-wrong{border-color:var(--danger);background:var(--danger-soft)}
+.choice.is-wrong .choice-mark{background:var(--danger);color:var(--on-danger)}
+.choice.locked{cursor:default}
+.choice.locked:hover{border-color:inherit}
+.notice{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;margin:16px 0 0;font-size:.96rem;line-height:1.5}
+.notice > .ic{margin-top:2px}
+.notice.warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+.notice.ok{background:var(--ok-soft);color:var(--brand-strong);border:1px solid var(--ok)}
+.notice.ko{background:var(--danger-soft);color:var(--danger);border:1px solid var(--danger)}
+.notice.info{background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+.notice .icon-btn{margin:-8px -8px -8px auto;color:inherit}
+.notice .btn{margin-top:8px}
+#exNotice .notice{margin:0 0 14px}
+.exam-actions{display:flex;align-items:center;gap:10px;margin:18px 0 12px;flex-wrap:wrap}
+.spacer{flex:1}
+@media (max-width:640px){
+  .exam-actions{position:sticky;bottom:0;z-index:20;background:var(--bg-glass);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);margin:14px -20px 0;padding:12px 20px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+  .exam-actions .btn{flex:1}
+  .exam-actions #btnPrev{flex:0 0 auto;padding-inline:14px}
+  .prev-lbl{display:none}
+  .spacer{display:none}
+  #btnFinish{order:3;flex-basis:100%;min-height:40px}
+  .timer{font-size:1rem;padding:6px 10px}
+  .exam-logo{display:none}
+}
+
+/* Feuille de dessin */
+.draw{margin-top:24px;border-top:1.5px dashed var(--line-2);padding-top:18px}
+.draw-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.draw-head h3{display:flex;align-items:center;gap:8px;margin:0}
+.draw-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.seg-tools .seg-opt > span{padding:8px 11px}
+@media (max-width:700px){.seg-tools .lbl{display:none}}
+.swatches{display:flex;gap:8px;padding:7px 10px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.sw{position:relative;width:28px;height:28px}
+.sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.sw .sw-c{display:block;width:100%;height:100%;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 2px rgba(255,255,255,.55);pointer-events:none}
+.sw input:checked + .sw-c{outline:2.5px solid var(--ink);outline-offset:2px}
+.sw input:focus-visible + .sw-c{outline:3px solid var(--focus);outline-offset:3px}
+.size-dot{display:block;border-radius:50%;background:currentColor}
+.draw-actions{display:flex;gap:4px;margin-left:auto}
+.draw canvas{display:block;width:100%;height:auto;aspect-ratio:1000/600;background:#fff;border:1.5px solid var(--line-2);border-radius:14px;touch-action:none;cursor:crosshair}
+.draw.locked canvas{cursor:default}
+
+/* ---------- Copie rendue ---------- */
+.done-card{text-align:center;padding:36px 26px}
+.done-ic{width:66px;height:66px;border-radius:50%;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;margin:0 auto 16px;animation:pop .45s var(--ease)}
+.done-ic .ic{width:32px;height:32px;stroke-width:2.6}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.done-stats{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:24px 40px;margin:26px 0 14px;text-align:left}
+.ring{position:relative;width:136px;height:136px;flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12}
+.ring-bg{stroke:var(--surface-2)}
+.ring-fg{stroke:var(--brand);stroke-linecap:round;transition:stroke-dashoffset 1s var(--ease)}
+.ring-txt{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.1}
+.ring-txt strong{font-family:var(--f-display);font-size:2.3rem;font-weight:600}
+.ring-txt span{color:var(--ink-3);font-size:.85rem}
+.done-facts{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.done-facts li{display:flex;gap:10px;align-items:center}
+.done-facts .ic{color:var(--brand)}
+.done-actions{display:flex;justify-content:center;margin-top:22px}
+.stack > * + *{margin-top:16px}
+
+/* Réponses (copie + correction) */
+.ans{padding:16px 0;border-bottom:1px dashed var(--line)}
+.ans:last-of-type{border-bottom:0}
+.ans-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.ans-q{flex:1;min-width:200px;margin:0;font-weight:700;white-space:pre-line}
+.ans-body{padding-left:36px;margin-top:8px}
+.ans-body > p{margin:0}
+.pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.verdict{display:inline-flex;gap:6px;align-items:center;font-weight:700;font-size:.86rem;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.verdict.ok{background:var(--ok-soft);color:var(--brand-strong)}
+.verdict.ko{background:var(--danger-soft);color:var(--danger)}
+.verdict.todo{background:var(--accent-hl);color:var(--ink)}
+.grade{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.9rem;white-space:nowrap}
+.grade input{width:80px;min-height:40px;padding:6px 8px;text-align:center}
+.expect{font-size:.92rem;color:var(--ink-2);margin:6px 0 0!important}
+.drawing-thumb{display:block;margin-top:10px;padding:0;border:1px solid var(--line-2);border-radius:12px;overflow:hidden;background:#fff;cursor:zoom-in;max-width:420px;width:100%}
+.zoom-img{width:100%;border-radius:12px;border:1px solid var(--line);background:#fff}
+@media (max-width:560px){.ans-body{padding-left:0}}
+
+/* ---------- Résultats ---------- */
+.live{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;color:var(--brand);font-weight:700;white-space:nowrap}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--brand);animation:live 2s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 var(--focus)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:10px}
+@media (min-width:860px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.stat strong{display:block;font-family:var(--f-display);font-size:2.1rem;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{color:var(--ink-2);font-size:.9rem}
+.stat-eco{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;background:var(--brand);border-color:transparent;color:var(--on-brand)}
+.stat-eco > .ic{width:40px;height:40px;padding:8px;border-radius:12px;background:rgba(255,255,255,.16)}
+.stat-eco strong{font-size:2.7rem}
+.stat-eco span{color:inherit;opacity:.88;font-size:.95rem}
+.eco-param{margin-left:auto;display:flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem;flex-wrap:wrap}
+.eco-param input{width:72px;min-height:40px;padding:6px 8px;text-align:center;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.45);color:inherit}
+.eco-param input:focus{border-color:currentColor;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:26px 0 14px}
+.tabs{display:inline-flex;gap:4px;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.tabs button{border:0;background:transparent;min-height:40px;padding:8px 14px;border-radius:10px;font-weight:700;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.tabs button[aria-selected="true"]{background:var(--seg-on);color:var(--brand-strong);box-shadow:var(--sh-1)}
+.tabs button[aria-selected="true"] .count{background:var(--brand-soft);color:var(--brand-strong)}
+.filter select{min-width:240px}
+@media (max-width:560px){.filter,.filter select{width:100%;min-width:0}}
+#liveRefresh{margin-bottom:12px}
+.copy{border:1px solid var(--line);border-radius:16px;background:var(--surface);margin-bottom:10px;overflow:hidden}
+.copy summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;transition:background-color .15s}
+.copy summary::-webkit-details-marker{display:none}
+.copy summary:hover{background:var(--surface-2)}
+.avatar{width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;font-weight:700;flex:none}
+.copy-main{display:flex;flex-direction:column;min-width:0;flex:1}
+.copy-main .meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.copy-chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.score{font-family:var(--f-display);font-weight:600;font-size:1.4rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.score small{font-size:.82rem;color:var(--ink-3);font-family:var(--f-body)}
+.chev{transition:transform .2s;color:var(--ink-3)}
+.copy[open] .chev{transform:rotate(180deg)}
+.copy-body{padding:4px 16px 16px;border-top:1px solid var(--line)}
+.copy-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+@media (max-width:600px){.copy summary{flex-wrap:wrap}.copy-chips{width:100%;justify-content:flex-start;padding-left:54px}.chev{display:none}}
+.table-wrap{border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:.94rem}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:0}
+@media (max-width:600px){
+  thead{display:none}
+  tbody tr{display:block;padding:12px 16px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child{border-bottom:0}
+  td{display:block;padding:2px 0;border:0}
+  td[data-l]::before{content:attr(data-l) " : ";color:var(--ink-3);font-weight:700}
+}
+.danger-zone{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:40px;padding:18px 20px;border:1.5px dashed var(--line-2);border-radius:16px}
+.danger-zone p{margin:2px 0 0}
+
+/* ---------- Boîte de dialogue ---------- */
+dialog#dlg{border:0;padding:0;background:transparent;max-width:min(520px,calc(100vw - 32px));width:100%;color:var(--ink);max-height:calc(100dvh - 32px);overflow:visible}
+dialog#dlg.wide{max-width:min(980px,calc(100vw - 32px))}
+dialog#dlg::backdrop{background:rgba(6,16,11,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.dlg-inner{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 30px 80px -20px rgba(0,0,0,.45);max-height:calc(100dvh - 32px);overflow:auto;animation:dlgIn .22s var(--ease)}
+@keyframes dlgIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.dlg-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand-strong);margin-bottom:14px}
+.dlg-icon .ic{width:24px;height:24px}
+.danger .dlg-icon{background:var(--danger-soft);color:var(--danger)}
+.success .dlg-icon{background:var(--brand);color:var(--on-brand)}
+.dlg-title{font-size:1.4rem;margin-bottom:8px}
+.dlg-body{color:var(--ink-2)}
+.dlg-body p{margin:0 0 12px}
+.dlg-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:22px}
+@media (max-width:480px){.dlg-actions .btn{flex:1}}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:6px 0 18px}
+.facts div{background:var(--surface-2);border-radius:12px;padding:10px 12px}
+.facts dt{font-size:.74rem;color:var(--ink-3);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.facts dd{margin:0;font-weight:700;color:var(--ink);font-size:1.05rem}
+.rules{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:10px}
+.rules li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.rules .ic{color:var(--brand);margin-top:3px}
+.big-code{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px;border-radius:14px;background:var(--brand-soft);border:1.5px dashed var(--brand)}
+.big-code span{font-family:var(--f-mono);font-weight:700;font-size:1.75rem;letter-spacing:.14em;color:var(--brand-strong)}
+
+/* ---------- Notifications ---------- */
+.toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:100;display:flex;flex-direction:column;gap:8px;align-items:center;width:max-content;max-width:calc(100vw - 32px);pointer-events:none}
+@media (max-width:760px){.toasts{top:12px;bottom:auto}}
+.toast{pointer-events:auto;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:var(--toast-bg);color:var(--toast-fg);box-shadow:var(--sh-2);font-weight:700;font-size:.94rem;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s var(--ease)}
+.toast.in{opacity:1;transform:none}
+.toast-action{background:transparent;border:0;color:inherit;font-weight:700;cursor:pointer;padding:6px 8px;margin:-6px -6px -6px 6px;border-radius:8px;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- Pied de page ---------- */
+.foot{border-top:1px solid var(--line);padding:22px 0;color:var(--ink-3);font-size:.88rem}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<!-- Icônes (style Lucide, licence ISC) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-square" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol>
+  <symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></symbol>
+  <symbol id="i-line" viewBox="0 0 24 24"><path d="M5 19 19 5"/></symbol>
+  <symbol id="i-eraser" viewBox="0 0 24 24"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 6 4.5z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></symbol>
+  <symbol id="i-type" viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-maximize" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Aller au contenu</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#accueil" aria-label="Audrey Eco Exam, accueil">
+      <span class="brand-mark"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span>
+      <span class="brand-name">Audrey <em>Eco</em> Exam</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#accueil"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span>Accueil</span></a>
+      <a href="#prof"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg><span>Professeur</span></a>
+      <a href="#eleve"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Élève</span></a>
+      <a href="#resultats"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg><span>Résultats</span></a>
+    </nav>
+    <button type="button" class="icon-btn theme-toggle" id="themeBtn" aria-label="Changer de thème"></button>
+  </div>
+</header>
+
+<main id="main">
+  <noscript><p class="callout">Cette démonstration a besoin de JavaScript pour fonctionner.</p></noscript>
+
+  <!-- ====================== ACCUEIL ====================== -->
+  <section class="view" id="view-accueil" aria-labelledby="h-accueil">
+    <div class="hero">
+      <div>
+        <p class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg> Des examens sans papier</p>
+        <h1 id="h-accueil">Créer, passer et corriger un examen <span class="hl">sans une seule feuille.</span></h1>
+        <p class="lead">Audrey Eco Exam est une démonstration interactive : le professeur crée l’examen, l’élève répond, écrit et dessine sur téléphone ou ordinateur, puis la copie est corrigée à l’écran.</p>
+        <div class="hero-cta">
+          <button type="button" class="btn btn-primary btn-lg" data-demo><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg> Essayer l’examen de démonstration</button>
+          <div class="hero-links">
+            <a class="btn btn-ghost" href="#prof"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg> Espace professeur</a>
+            <a class="btn btn-ghost" href="#eleve"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg> Espace élève</a>
+          </div>
+        </div>
+        <p class="eco-line" id="ecoLine"></p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="mock">
+          <div class="mock-bar"><span class="mock-pill">Écologie · 1/4</span><span class="mock-timer"><svg class="ic"><use href="#i-clock"/></svg>12:48</span></div>
+          <div class="mock-progress"><span></span></div>
+          <p class="mock-q">Quel gaz les arbres absorbent-ils lors de la photosynthèse&nbsp;?</p>
+          <div class="mock-opt is-on"><b>A</b>Dioxyde de carbone (CO₂)</div>
+          <div class="mock-opt"><b>B</b>Oxygène (O₂)</div>
+          <div class="mock-opt"><b>C</b>Azote (N₂)</div>
+          <div class="mock-btn">Enregistrer et continuer <svg class="ic"><use href="#i-arrow"/></svg></div>
+        </div>
+        <div class="mock-float f1"><svg class="ic"><use href="#i-check"/></svg> Copie enregistrée</div>
+        <div class="mock-float f2"><strong>0</strong> feuille imprimée</div>
+        <div class="mock-sketch">
+          <svg viewBox="0 0 120 78" width="100%"><path d="M20 62C30 30 70 12 100 14 98 44 70 66 34 64Z" fill="none" stroke="#167a57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 62C44 50 62 38 84 26" fill="none" stroke="#167a57" stroke-width="2.5" stroke-linecap="round"/><path d="M8 73Q40 77 112 70" fill="none" stroke="#1b2b24" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 6"/></svg>
+          <small>dessin de l’élève</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Comment ça marche</h2>
+      <p class="lead-sm">Trois étapes, de la création à la correction, sans imprimante.</p>
+      <ol class="steps">
+        <li><span class="step-n">1</span><h3>Le professeur crée l’examen</h3><p>QCM, réponses courtes et rédactions avec feuille de dessin. Un code est généré à la publication.</p></li>
+        <li><span class="step-n">2</span><h3>L’élève répond à l’écran</h3><p>Il entre son nom et le code, puis répond avant la fin du chronomètre, sur téléphone ou ordinateur.</p></li>
+        <li><span class="step-n">3</span><h3>La copie est corrigée</h3><p>QCM et réponses courtes sont corrigés automatiquement ; le professeur note les rédactions et les dessins.</p></li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>Tout ce qu’il faut pour un examen, sauf le papier</h2>
+      <p class="lead-sm">Les outils d’une vraie salle d’examen, pensés pour l’écran.</p>
+      <ul class="features">
+        <li><span class="feat-ic"><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg></span><h3>Trois types de questions</h3><p>QCM de 2 à 6 choix, réponse courte (accents et majuscules ignorés) et rédaction.</p></li>
+        <li><span class="feat-ic"><svg class="ic" aria-hidden="true"><use href="#i-pencil"/></svg></span><h3>Feuille de dessin</h3><p>Crayon, ligne, rectangle, cercle, gomme, couleurs et retour en arrière, au doigt ou à la souris.</p></li>
+        <li><span class="feat-ic"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Chronomètre</h3><p>Compte à rebours visible, avertissement à 5 minutes, copie rendue automatiquement à la fin.</p></li>
+        <li><span class="feat-ic"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></span><h3>Surveillance honnête</h3><p>Les sorties d’onglet ou du plein écran sont signalées au professeur : un indice, jamais une preuve.</p></li>
+        <li><span class="feat-ic"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><h3>Correction à l’écran</h3><p>Score provisoire immédiat, notes des rédactions, commentaire pour l’élève et export CSV.</p></li>
+        <li><span class="feat-ic"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></span><h3>Téléphone et ordinateur</h3><p>Interface adaptée aux petits écrans, thème sombre, réponses conservées si la page se recharge.</p></li>
+      </ul>
+    </div>
+
+    <aside class="callout"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><div><strong>Démo pour exposition.</strong> Les données restent dans ce navigateur. Les alertes ne sont pas transmises entre appareils. Pour une utilisation scolaire réelle, une version avec serveur et authentification sera nécessaire.</div></aside>
+  </section>
+
+  <!-- ====================== PROFESSEUR ====================== -->
+  <section class="view" id="view-prof" aria-labelledby="h-prof" hidden>
+    <div class="page-head">
+      <div>
+        <p class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg> Espace professeur</p>
+        <h1 id="h-prof">Créer un examen</h1>
+        <p class="lead-sm">Compose ton examen, publie-le, puis donne le code à tes élèves.</p>
+      </div>
+      <a class="btn btn-ghost" href="#resultats"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg> Surveillance et résultats</a>
+    </div>
+    <div class="prof-grid">
+      <div class="card">
+        <div class="card-head"><h2>Nouvel examen</h2><span class="saved" id="draftState" aria-live="polite"></span></div>
+        <div class="form-grid">
+          <div class="field span-2"><label for="exTitleIn">Titre <span class="req" aria-hidden="true">*</span></label><input type="text" id="exTitleIn" placeholder="Examen de sciences" autocomplete="off" required><p class="field-err"></p></div>
+          <div class="field"><label for="exClassIn">Classe</label><input type="text" id="exClassIn" placeholder="Terminale" autocomplete="off"></div>
+          <div class="field"><label for="exDurIn">Durée (minutes)</label><input type="number" id="exDurIn" min="1" max="300" inputmode="numeric"></div>
+          <fieldset class="field span-2"><legend>Correction visible par l’élève</legend>
+            <div class="seg">
+              <label class="seg-opt"><input type="radio" name="reveal" value="end"><span><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg> À la fin seulement</span></label>
+              <label class="seg-opt"><input type="radio" name="reveal" value="each"><span><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg> Après chaque question</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="q-head"><h2>Questions</h2><span class="muted" id="qTotals"></span></div>
+        <div id="qList"></div>
+        <div class="add-row">
+          <span>Ajouter :</span>
+          <button type="button" class="btn btn-soft btn-sm" data-add="mcq"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg> QCM</button>
+          <button type="button" class="btn btn-soft btn-sm" data-add="short"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg> Réponse courte</button>
+          <button type="button" class="btn btn-soft btn-sm" data-add="essay"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg> Rédaction / dessin</button>
+        </div>
+        <div class="editor-foot">
+          <button type="button" class="btn btn-ghost" id="btnClearDraft"><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg> Vider le brouillon</button>
+          <button type="button" class="btn btn-primary btn-lg" id="btnPublish"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg> Publier l’examen</button>
+        </div>
+      </div>
+      <aside class="card side" aria-labelledby="h-exams">
+        <div class="card-head"><h2 id="h-exams">Mes examens</h2><span class="count" id="examCount">0</span></div>
+        <ul class="exam-list" id="examList"></ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ====================== ÉLÈVE ====================== -->
+  <section class="view" id="view-eleve" aria-labelledby="h-eleve" hidden>
+    <div class="narrow">
+      <div class="card student-card">
+        <div class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></div>
+        <h1 id="h-eleve">Espace élève</h1>
+        <p class="lead-sm">Entre ton nom et le code donné par ton professeur.</p>
+        <form id="studentForm" novalidate>
+          <div class="field"><label for="stName">Prénom et nom</label><input type="text" id="stName" autocomplete="name" placeholder="Prénom Nom"><p class="field-err"></p></div>
+          <div class="field"><label for="stCode">Code d’examen</label><input type="text" id="stCode" class="code-input" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="12" placeholder="ECO12345"><p class="field-err"></p></div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Commencer l’examen <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </form>
+        <div class="or"><span>ou</span></div>
+        <button type="button" class="btn btn-soft btn-block" data-demo-student><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg> Essayer la démo (code AUDREY)</button>
+      </div>
+      <p class="hint center under-note">Dans cette démo, le code doit avoir été créé sur ce même navigateur.</p>
+    </div>
+  </section>
+
+  <!-- ====================== EXAMEN EN COURS ====================== -->
+  <section class="view" id="view-examen" aria-labelledby="exTitle" hidden>
+    <div class="exam-bar">
+      <div class="exam-bar-in">
+        <span class="exam-logo" aria-hidden="true"><svg class="ic"><use href="#i-leaf"/></svg></span>
+        <div class="exam-id"><strong id="exTitle"></strong><span id="exStep" class="muted"></span></div>
+        <div class="exam-chips">
+          <span class="chip chip-warn" id="exAlerts" hidden><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><span></span></span>
+          <span class="timer" id="exTimer" role="timer" aria-label="Temps restant"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span id="exTimerTxt">--:--</span></span>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span id="exProgress"></span></div>
+    </div>
+    <div class="exam-wrap">
+      <nav class="qnav" id="qNav" aria-label="Aller à une question"></nav>
+      <div id="exNotice"></div>
+      <div class="card q-card" id="qArea"></div>
+      <div class="exam-actions">
+        <button type="button" class="btn btn-ghost" id="btnPrev" aria-label="Question précédente"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg><span class="prev-lbl"> Précédente</span></button>
+        <div class="spacer"></div>
+        <button type="button" class="btn btn-ghost" id="btnFinish"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg> Terminer l’examen</button>
+        <button type="button" class="btn btn-primary" id="btnNext"></button>
+      </div>
+      <p class="hint center"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> Quitter l’onglet peut déclencher une alerte de surveillance. Une sortie n’est pas une preuve de triche.</p>
+    </div>
+  </section>
+
+  <!-- ====================== COPIE RENDUE ====================== -->
+  <section class="view" id="view-termine" aria-labelledby="h-done" hidden>
+    <div class="narrow wide stack" id="doneBody"></div>
+  </section>
+
+  <!-- ====================== RÉSULTATS ====================== -->
+  <section class="view" id="view-resultats" aria-labelledby="h-res" hidden>
+    <div class="page-head">
+      <div>
+        <p class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> Espace professeur</p>
+        <h1 id="h-res">Surveillance et résultats</h1>
+        <p class="lead-sm">Copies reçues, corrections et alertes enregistrées sur ce navigateur. <span class="live"><span class="live-dot" aria-hidden="true"></span>Mise à jour en direct entre onglets</span></p>
+      </div>
+      <div class="head-actions">
+        <a class="btn btn-ghost" href="#prof"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg> Créer un examen</a>
+        <button type="button" class="btn btn-ghost" id="btnExport"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg> Exporter (CSV)</button>
+      </div>
+    </div>
+    <div id="resStats"></div>
+    <div class="toolbar">
+      <div class="tabs" role="tablist" aria-label="Affichage">
+        <button type="button" role="tab" id="tab-copies" aria-controls="panel-copies" aria-selected="true" data-tab="copies">Copies <span class="count" id="cntCopies">0</span></button>
+        <button type="button" role="tab" id="tab-alertes" aria-controls="panel-alertes" aria-selected="false" tabindex="-1" data-tab="alertes">Alertes <span class="count" id="cntAlerts">0</span></button>
+      </div>
+      <div class="filter"><label for="resFilter" class="sr-only">Filtrer par examen</label><select id="resFilter"></select></div>
+    </div>
+    <button type="button" class="btn btn-soft btn-sm" id="liveRefresh" hidden><svg class="ic" aria-hidden="true"><use href="#i-refresh"/></svg> Nouvelles données : actualiser</button>
+    <div role="tabpanel" id="panel-copies" aria-labelledby="tab-copies"></div>
+    <div role="tabpanel" id="panel-alertes" aria-labelledby="tab-alertes" hidden></div>
+    <div class="danger-zone">
+      <div><strong>Réinitialiser la démonstration</strong><p class="hint">Supprime examens, copies et alertes de ce navigateur. L’examen de démonstration est recréé.</p></div>
+      <button type="button" class="btn btn-danger-ghost" id="btnReset"><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg> Tout réinitialiser</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg> Audrey Eco Exam — des examens sans papier</span>
+    <span>Démo pour exposition · données stockées uniquement dans ce navigateur</span>
+  </div>
+</footer>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+<dialog id="dlg"></dialog>
+<div class="sr-only" id="sr" aria-live="assertive"></div>
+
+<script>
+(() => {
+'use strict';
+
+/* =========================================================
+   1. Utilitaires
+   ========================================================= */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ic = (n, cls = '') => `<svg class="ic ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+const pl = (n, one, many) => (Math.abs(n) > 1 ? many : one);
+const fmtNum = n => String(Math.round(n * 100) / 100).replace('.', ',');
+const fmtDate = ts => new Date(ts).toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+const fmtClock = s => { const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60, p = v => String(v).padStart(2, '0'); return h ? `${h}:${p(m)}:${p(x)}` : `${p(m)}:${p(x)}`; };
+const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const initials = name => String(name).trim().split(/\s+/).map(w => w[0] || '').slice(0, 2).join('').toUpperCase() || '?';
+const wordCount = t => { const n = String(t || '').trim().split(/\s+/).filter(Boolean).length; return `${n} ${pl(n, 'mot', 'mots')}`; };
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) {
+    try { localStorage.setItem(k, JSON.stringify(v)); return true; }
+    catch { toast('Stockage du navigateur plein : supprime d’anciennes copies dans « Résultats ».', { type:'error' }); return false; }
+  },
+  del(k) { try { localStorage.removeItem(k); } catch {} }
+};
+const sess = {
+  get(k, d) { try { const v = sessionStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { sessionStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } },
+  del(k) { try { sessionStorage.removeItem(k); } catch {} }
+};
+
+/* =========================================================
+   2. Données
+   ========================================================= */
+const K = { exams:'exams', results:'results', alerts:'alerts', draft:'aee.draft', sheets:'aee.sheetsPerCopy', theme:'aee.theme' };
+const S = { session:'aee.session', last:'aee.last', prefill:'aee.prefill' };
+const DEMO_CODE = 'AUDREY';
+const CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const TYPES = {
+  mcq:   { label:'QCM', short:'QCM', icon:'list' },
+  short: { label:'Réponse courte', short:'Courte', icon:'type' },
+  essay: { label:'Rédaction / dessin', short:'Rédaction', icon:'pencil' }
+};
+
+function normQ(q = {}) {
+  const type = TYPES[q.type] ? q.type : 'mcq';
+  return {
+    type,
+    text: String(q.text ?? ''),
+    points: clamp(Math.round(+q.points) || 1, 1, 100),
+    options: Array.isArray(q.options) && q.options.length ? q.options.map(String) : ['', '', ''],
+    correct: Number.isInteger(+q.correct) ? +q.correct : 0,
+    expected: String(q.expected ?? ''),
+    allowDraw: q.allowDraw !== false
+  };
+}
+function normExam(e) {
+  return { ...e, title: String(e.title ?? 'Examen'), klass: String(e.klass ?? ''), duration: clamp(Math.round(+e.duration) || 30, 1, 300), reveal: e.reveal === 'each' ? 'each' : 'end', questions: (e.questions || []).map(normQ) };
+}
+function normResult(r, i) {
+  const questions = (r.questions || []).map(normQ);
+  const answers = (r.answers || []).slice();
+  while (answers.length < questions.length) answers.push({ value:'', correct:false, points:0, draw:null, skipped:true });
+  return { ...r, id: r.id || ('r' + i + '-' + uid()), questions, answers, manual: r.manual || {}, comment: r.comment || '', alerts: +r.alerts || 0, ts: r.ts || 0, date: r.date || '' };
+}
+const getExams = () => store.get(K.exams, []).map(normExam);
+const getResults = () => store.get(K.results, []).map(normResult);
+const getAlerts = () => store.get(K.alerts, []);
+const sheetsPerCopy = () => { const v = +store.get(K.sheets, 2); return Number.isFinite(v) && v >= 0 ? v : 2; };
+
+function migrate() {
+  const ex = store.get(K.exams, null);
+  if (Array.isArray(ex)) store.set(K.exams, ex.map(normExam));
+  const rs = store.get(K.results, null);
+  if (Array.isArray(rs) && rs.some(r => !r.id)) store.set(K.results, rs.map(normResult));
+}
+
+function seedDemo() {
+  const exams = store.get(K.exams, []);
+  if (exams.some(e => e.code === DEMO_CODE)) return;
+  exams.unshift({ code:DEMO_CODE, title:'Découverte — Écologie et sciences', klass:'Démonstration', duration:15, reveal:'end', created:0, questions:[
+    { type:'mcq', text:'Quel gaz les arbres absorbent-ils lors de la photosynthèse ?', points:2, options:['Dioxyde de carbone (CO₂)', 'Oxygène (O₂)', 'Azote (N₂)'], correct:0 },
+    { type:'short', text:'Quel est le nom du processus par lequel les plantes fabriquent leur matière organique grâce à la lumière ?', points:2, expected:'photosynthèse ; la photosynthèse' },
+    { type:'mcq', text:'Lequel de ces gestes réduit le plus la consommation de papier à l’école ?', points:2, options:['Passer les examens sur écran', 'Imprimer chaque cours en double', 'Prendre une feuille neuve pour chaque brouillon'], correct:0 },
+    { type:'essay', text:'Explique comment ton école peut réduire les déchets. Dessine aussi un symbole ou un petit schéma écologique.', points:6, allowDraw:true }
+  ]});
+  store.set(K.exams, exams);
+}
+
+/* Correction automatique */
+const normText = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[’`]/g, "'").replace(/\s+/g, ' ').trim().replace(/[.!?;:,]+$/, '').trim();
+const variants = exp => String(exp ?? '').split(/[;|]/).map(normText).filter(Boolean);
+const firstVariant = exp => (String(exp ?? '').split(/[;|]/).map(s => s.trim()).filter(Boolean)[0] || '');
+const correctText = q => q.type === 'mcq' ? (q.options[q.correct] ?? '') : firstVariant(q.expected);
+function hasAnswer(q, a) {
+  if (!a) return false;
+  if (q.type === 'mcq') return a.value !== '' && a.value != null;
+  if (q.type === 'essay') return !!(String(a.value ?? '').trim() || a.draw);
+  return !!String(a.value ?? '').trim();
+}
+function grade(q, a) {
+  const answered = hasAnswer(q, a);
+  if (q.type === 'essay') return { correct:null, points:0, skipped:!answered };
+  if (!answered) return { correct:false, points:0, skipped:true };
+  const ok = q.type === 'mcq' ? Number(a.value) === q.correct : variants(q.expected).includes(normText(a.value));
+  return { correct:ok, points: ok ? q.points : 0, skipped:false };
+}
+function scoreOf(r) {
+  let auto = 0, autoMax = 0, manual = 0, manualMax = 0, pending = 0;
+  r.questions.forEach((q, i) => {
+    const a = r.answers[i] || {};
+    if (q.type === 'essay') { manualMax += q.points; const m = r.manual[i]; if (m == null || m === '') pending++; else manual += +m; }
+    else { autoMax += q.points; auto += +a.points || 0; }
+  });
+  return { auto, autoMax, manual, manualMax, pending, total: auto + manual, max: autoMax + manualMax };
+}
+
+/* =========================================================
+   3. Thème clair / sombre
+   ========================================================= */
+const mqDark = matchMedia('(prefers-color-scheme: dark)');
+const effectiveTheme = () => document.documentElement.dataset.theme || (mqDark.matches ? 'dark' : 'light');
+function paintTheme() {
+  const dark = effectiveTheme() === 'dark', b = $('#themeBtn'), label = dark ? 'Passer au thème clair' : 'Passer au thème sombre';
+  b.innerHTML = ic(dark ? 'sun' : 'moon');
+  b.setAttribute('aria-label', label); b.title = label;
+  $('meta[name="theme-color"]').setAttribute('content', dark ? '#0d1511' : '#f3f5ee');
+}
+function toggleTheme() {
+  const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  store.set(K.theme, next);
+  paintTheme();
+}
+
+/* =========================================================
+   4. Notifications, dialogues, presse-papiers
+   ========================================================= */
+function toast(msg, { type = 'info', action = null, timeout = 3800 } = {}) {
+  const el = document.createElement('div');
+  el.className = 'toast toast-' + type;
+  if (type === 'error') el.setAttribute('role', 'alert');
+  const icon = { error:'alert', success:'check', warn:'alert', info:'info' }[type] || 'info';
+  el.innerHTML = `${ic(icon)}<span>${esc(msg)}</span>`;
+  const close = () => { el.classList.remove('in'); setTimeout(() => el.remove(), 220); };
+  if (action) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'toast-action'; b.textContent = action.label;
+    b.addEventListener('click', () => { action.fn(); close(); });
+    el.append(b);
+  }
+  $('#toasts').append(el);
+  requestAnimationFrame(() => el.classList.add('in'));
+  setTimeout(close, action ? 6500 : timeout);
+}
+function announce(msg) { const sr = $('#sr'); sr.textContent = ''; requestAnimationFrame(() => { sr.textContent = msg; }); }
+
+/* Dialogue modal générique : renvoie une promesse avec la valeur du bouton choisi (ou null). */
+function dialog({ title, html = '', icon = 'info', tone = '', actions = [{ label:'OK', value:true, kind:'primary' }] }) {
+  return new Promise(resolve => {
+    const d = $('#dlg');
+    if (d.open) d.close('');
+    d.className = tone;
+    d.innerHTML = `<form method="dialog" class="dlg-inner">
+      <div class="dlg-icon">${ic(icon)}</div>
+      <h2 class="dlg-title" id="dlg-title">${esc(title)}</h2>
+      <div class="dlg-body">${html}</div>
+      <div class="dlg-actions">${actions.map((a, i) => `<button class="btn btn-${a.kind || 'ghost'}" value="${i}" ${a.autofocus ? 'autofocus' : ''}>${a.icon ? ic(a.icon) : ''}${esc(a.label)}</button>`).join('')}</div>
+    </form>`;
+    d.setAttribute('aria-labelledby', 'dlg-title');
+    d.returnValue = '';
+    d.addEventListener('close', () => {
+      const v = d.returnValue;
+      resolve(v !== '' && actions[+v] ? actions[+v].value : null);
+    }, { once:true });
+    d.showModal();
+  });
+}
+const confirmDlg = (title, html, { ok = 'Confirmer', danger = false, icon } = {}) => dialog({
+  title, html, icon: icon || (danger ? 'alert' : 'info'), tone: danger ? 'danger' : '',
+  actions: [{ label:'Annuler', value:false }, { label:ok, value:true, kind: danger ? 'danger' : 'primary', autofocus:true }]
+});
+
+async function copyText(text, btn) {
+  try { await navigator.clipboard.writeText(text); }
+  catch {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.append(ta); ta.select();
+    try { document.execCommand('copy'); } catch {}
+    ta.remove();
+  }
+  if (btn && !btn.dataset.busy) {
+    const old = btn.innerHTML; btn.dataset.busy = '1';
+    btn.innerHTML = `${ic('check')} Copié`;
+    setTimeout(() => { btn.innerHTML = old; delete btn.dataset.busy; }, 1600);
+  }
+  if (!$('#dlg').open) toast(`Code ${text} copié.`, { type:'success' });
+}
+
+/* =========================================================
+   5. Navigation (adresse #vue)
+   ========================================================= */
+const VIEWS = ['accueil', 'prof', 'eleve', 'examen', 'termine', 'resultats'];
+let currentView = null;
+let session = sess.get(S.session, null);
+let lastResultMem = null;
+
+function route(e) {
+  const initial = e === true;
+  let v = decodeURIComponent(location.hash.slice(1)) || 'accueil';
+  if (!VIEWS.includes(v)) v = 'accueil';
+  if (session && v !== 'examen') v = 'examen';
+  if (!session && v === 'examen') v = 'eleve';
+  if (v === 'termine' && !getLastResult()) v = 'accueil';
+  if (location.hash.slice(1) !== v) history.replaceState(null, '', '#' + v);
+  showView(v, initial);
+}
+function showView(v, initial) {
+  if (v !== 'examen') Draw.unmount();
+  currentView = v;
+  $$('.view').forEach(el => { el.hidden = el.id !== 'view-' + v; });
+  document.body.dataset.view = v;
+  $$('.nav a').forEach(a => a.getAttribute('href') === '#' + v ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+  ({ accueil:renderHome, prof:renderProf, eleve:renderStudent, examen:renderExam, termine:renderDone, resultats:renderResults })[v]();
+  if (!initial) {
+    window.scrollTo(0, 0);
+    const h = $(`#view-${v} h1`);
+    if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll:true }); }
+  }
+}
+function go(view) { if (location.hash === '#' + view) route(); else location.hash = '#' + view; }
+
+/* =========================================================
+   6. Accueil
+   ========================================================= */
+function renderHome() {
+  const n = getResults().length, sheets = n * sheetsPerCopy();
+  $('#ecoLine').innerHTML = n
+    ? `${ic('leaf')}<span>Sur cet appareil : <strong>${n}</strong> ${pl(n, 'copie numérique', 'copies numériques')} · environ <strong>${fmtNum(sheets)}</strong> ${pl(sheets, 'feuille non imprimée', 'feuilles non imprimées')}.</span>`
+    : `${ic('leaf')}<span>Lance la démo : chaque copie numérique s’ajoute au compteur de feuilles économisées.</span>`;
+}
+
+/* =========================================================
+   7. Espace professeur
+   ========================================================= */
+const emptyDraft = () => ({ title:'', klass:'', duration:30, reveal:'end', questions:[] });
+let draft = Object.assign(emptyDraft(), store.get(K.draft, {}));
+draft.questions = (draft.questions || []).map(normQ);
+let draftTimer = null;
+function saveDraft() {
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(() => {
+    if (store.set(K.draft, draft)) $('#draftState').innerHTML = `${ic('check')} Brouillon enregistré à ${new Date().toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' })}`;
+  }, 400);
+}
+const newQ = type => normQ({ type, points: type === 'essay' ? 4 : 1, options: type === 'mcq' ? ['', '', ''] : [], allowDraw:true });
+const draftHasContent = () => !!(draft.title.trim() || draft.questions.length);
+
+function renderProf() {
+  $('#exTitleIn').value = draft.title;
+  $('#exClassIn').value = draft.klass;
+  $('#exDurIn').value = draft.duration;
+  $$('input[name="reveal"]').forEach(r => { r.checked = r.value === draft.reveal; });
+  renderEditor();
+  renderExamList();
+}
+
+function questionCard(q, i, n) {
+  const types = Object.entries(TYPES).map(([id, t]) => `<label class="seg-opt"><input type="radio" name="qtype-${i}" value="${id}" data-field="type" ${q.type === id ? 'checked' : ''}><span>${ic(t.icon)}<span class="l-full">${t.label}</span><span class="l-short">${t.short}</span></span></label>`).join('');
+  let body;
+  if (q.type === 'mcq') {
+    body = `<fieldset class="field"><legend>Choix de réponse <span class="hint">— coche la bonne réponse</span></legend>
+      ${q.options.map((o, j) => `<div class="opt-row">
+        <label class="opt-correct" title="Marquer comme bonne réponse"><input type="radio" name="correct-${i}" value="${j}" data-field="correct" ${q.correct === j ? 'checked' : ''}><span class="mark">${ic('check')}</span><span class="sr-only">Le choix ${j + 1} est la bonne réponse</span></label>
+        <input type="text" data-field="option" data-opt="${j}" value="${esc(o)}" placeholder="Choix ${j + 1}" aria-label="Texte du choix ${j + 1}">
+        <button type="button" class="icon-btn" data-act="delopt" data-opt="${j}" aria-label="Retirer le choix ${j + 1}" title="Retirer ce choix" ${q.options.length <= 2 ? 'disabled' : ''}>${ic('x')}</button>
+      </div>`).join('')}
+      <p class="field-err"></p>
+      <button type="button" class="btn btn-ghost btn-sm add-opt" data-act="addopt" ${q.options.length >= 6 ? 'disabled' : ''}>${ic('plus')} Ajouter un choix</button>
+    </fieldset>`;
+  } else if (q.type === 'short') {
+    body = `<div class="field"><label for="q${i}-exp">Réponse(s) acceptée(s)</label>
+      <input type="text" id="q${i}-exp" data-field="expected" value="${esc(q.expected)}" placeholder="photosynthèse ; la photosynthèse" aria-describedby="q${i}-exph" autocomplete="off">
+      <p class="hint" id="q${i}-exph">Sépare plusieurs variantes par « ; ». Les majuscules, les accents et les espaces en trop ne comptent pas.</p>
+      <p class="field-err"></p></div>`;
+  } else {
+    body = `<label class="check"><input type="checkbox" data-field="allowDraw" ${q.allowDraw ? 'checked' : ''}> <span>Proposer la feuille de dessin à l’élève</span></label>
+      <p class="hint">Cette question sera corrigée manuellement dans « Résultats ».</p>`;
+  }
+  return `<article class="qcard" data-q="${i}" aria-label="Question ${i + 1}">
+    <div class="qcard-head">
+      <span class="qnum">${i + 1}</span>
+      <div class="seg seg-sm" role="radiogroup" aria-label="Type de la question ${i + 1}">${types}</div>
+      <div class="qtools">
+        <button type="button" class="icon-btn" data-act="up" aria-label="Monter la question ${i + 1}" title="Monter" ${i === 0 ? 'disabled' : ''}>${ic('up')}</button>
+        <button type="button" class="icon-btn" data-act="down" aria-label="Descendre la question ${i + 1}" title="Descendre" ${i === n - 1 ? 'disabled' : ''}>${ic('down')}</button>
+        <button type="button" class="icon-btn" data-act="dup" aria-label="Dupliquer la question ${i + 1}" title="Dupliquer">${ic('copy')}</button>
+        <button type="button" class="icon-btn danger" data-act="del" aria-label="Supprimer la question ${i + 1}" title="Supprimer">${ic('trash')}</button>
+      </div>
+    </div>
+    <div class="qcard-grid">
+      <div class="field"><label for="q${i}-text">Énoncé</label><textarea id="q${i}-text" data-field="text" rows="2" placeholder="Écris la question…">${esc(q.text)}</textarea><p class="field-err"></p></div>
+      <div class="field"><label for="q${i}-pts">Points</label><input type="number" id="q${i}-pts" data-field="points" min="1" max="100" inputmode="numeric" value="${q.points}"></div>
+    </div>
+    ${body}
+  </article>`;
+}
+function renderEditor() {
+  const qs = draft.questions;
+  $('#qList').innerHTML = qs.length
+    ? qs.map((q, i) => questionCard(q, i, qs.length)).join('')
+    : `<div class="empty dashed">${ic('file')}<strong>Aucune question pour l’instant</strong><p>Ajoute une première question avec les boutons ci-dessous.</p></div>`;
+  updateTotals();
+}
+function updateTotals() {
+  const n = draft.questions.length, pts = draft.questions.reduce((s, q) => s + q.points, 0);
+  $('#qTotals').textContent = n ? `${n} ${pl(n, 'question', 'questions')} · ${pts} ${pl(pts, 'point', 'points')}` : '';
+}
+const qCard = i => $(`#qList [data-q="${i}"]`);
+
+function setErr(input, msg) {
+  input.classList.add('invalid');
+  input.setAttribute('aria-invalid', 'true');
+  const p = input.closest('.field')?.querySelector('.field-err');
+  if (p && !p.textContent) p.textContent = msg;
+  return input;
+}
+function clearErr(input) {
+  input.classList.remove('invalid');
+  input.removeAttribute('aria-invalid');
+  const f = input.closest('.field');
+  if (f && !f.querySelector('.invalid')) { const p = f.querySelector('.field-err'); if (p) p.textContent = ''; }
+}
+function validateDraft() {
+  $$('#view-prof .invalid').forEach(clearErr);
+  $$('#view-prof .field-err').forEach(p => { p.textContent = ''; });
+  const errs = [];
+  if (!draft.title.trim()) errs.push(setErr($('#exTitleIn'), 'Donne un titre à l’examen.'));
+  if (!draft.questions.length) { toast('Ajoute au moins une question avant de publier.', { type:'error' }); if (!errs.length) $('[data-add="mcq"]').focus(); return false; }
+  draft.questions.forEach((q, i) => {
+    const card = qCard(i);
+    if (!q.text.trim()) errs.push(setErr($('[data-field="text"]', card), 'Écris l’énoncé de la question.'));
+    if (q.type === 'mcq') q.options.forEach((o, j) => { if (!o.trim()) errs.push(setErr($(`[data-field="option"][data-opt="${j}"]`, card), 'Complète tous les choix ou retire ceux en trop.')); });
+    if (q.type === 'short' && !variants(q.expected).length) errs.push(setErr($('[data-field="expected"]', card), 'Indique au moins une réponse acceptée.'));
+  });
+  if (errs.length) {
+    errs[0].focus({ preventScroll:true });
+    errs[0].scrollIntoView({ block:'center', behavior: reducedMotion() ? 'auto' : 'smooth' });
+    toast(`${errs.length} ${pl(errs.length, 'champ à compléter', 'champs à compléter')}.`, { type:'error' });
+    return false;
+  }
+  return true;
+}
+
+async function publish() {
+  if (!validateDraft()) return;
+  const exams = getExams();
+  let code;
+  do { code = 'ECO' + Array.from({ length:5 }, () => CODE_ALPHABET[Math.floor(Math.random() * CODE_ALPHABET.length)]).join(''); }
+  while (exams.some(e => e.code === code));
+  const exam = {
+    code, title: draft.title.trim(), klass: draft.klass.trim(),
+    duration: clamp(Math.round(+draft.duration) || 30, 1, 300), reveal: draft.reveal, created: Date.now(),
+    questions: draft.questions.map(q => {
+      const c = normQ(q);
+      c.text = c.text.trim();
+      if (c.type === 'mcq') { c.options = c.options.map(s => s.trim()); c.correct = clamp(c.correct, 0, c.options.length - 1); } else c.options = [];
+      if (c.type !== 'short') c.expected = '';
+      return c;
+    })
+  };
+  exams.push(exam);
+  if (!store.set(K.exams, exams)) return;
+  draft = emptyDraft();
+  store.set(K.draft, draft);
+  $('#draftState').textContent = '';
+  renderProf();
+  const res = await dialog({
+    title:'Examen publié !', icon:'check', tone:'success',
+    html:`<p>Donne ce code à tes élèves. Dans cette démo, ils doivent utiliser ce même navigateur.</p>
+      <div class="big-code"><span>${esc(code)}</span><button type="button" class="btn btn-ghost btn-sm" data-copy="${esc(code)}">${ic('copy')} Copier</button></div>`,
+    actions:[{ label:'Fermer', value:'close' }, { label:'Tester comme élève', value:'test', kind:'primary', icon:'play', autofocus:true }]
+  });
+  if (res === 'test') goTest(code);
+}
+function goTest(code) { sess.set(S.prefill, code); go('eleve'); }
+
+function examItem(e, nCopies) {
+  const pts = e.questions.reduce((s, q) => s + q.points, 0), demo = e.code === DEMO_CODE;
+  return `<li class="exam-item" data-code="${esc(e.code)}">
+    <div class="exam-item-top"><h3>${esc(e.title)}</h3>${demo ? '<span class="tag tag-accent">Démo</span>' : ''}</div>
+    <p class="meta">${esc(e.klass || 'Sans classe')} · ${e.questions.length} ${pl(e.questions.length, 'question', 'questions')} · ${e.duration} min · ${pts} pts</p>
+    <div class="exam-item-actions">
+      <button type="button" class="code-chip" data-copy="${esc(e.code)}" aria-label="Copier le code ${esc(e.code)}" title="Copier le code">${esc(e.code)} ${ic('copy')}</button>
+      <button type="button" class="btn btn-ghost btn-sm" data-act="test">${ic('play')} Tester</button>
+      <button type="button" class="btn btn-ghost btn-sm" data-act="copies">${ic('chart')} ${nCopies} ${pl(nCopies, 'copie', 'copies')}</button>
+      <button type="button" class="btn btn-ghost btn-sm" data-act="reuse" title="Charger une copie de cet examen dans l’éditeur">${ic('refresh')} Réutiliser</button>
+      ${demo ? '' : `<button type="button" class="icon-btn danger" data-act="delexam" aria-label="Supprimer l’examen ${esc(e.title)}" title="Supprimer">${ic('trash')}</button>`}
+    </div>
+  </li>`;
+}
+function renderExamList() {
+  const exams = getExams(), results = getResults();
+  const sorted = exams.slice().sort((a, b) => (a.code === DEMO_CODE) - (b.code === DEMO_CODE) || (b.created || 0) - (a.created || 0));
+  $('#examCount').textContent = exams.length;
+  $('#examList').innerHTML = sorted.length
+    ? sorted.map(e => examItem(e, results.filter(r => r.code === e.code).length)).join('')
+    : `<li class="empty">${ic('file')}<strong>Aucun examen</strong><p>Tes examens publiés apparaîtront ici.</p></li>`;
+}
+
+function wireProf() {
+  $('#exTitleIn').addEventListener('input', e => { draft.title = e.target.value; clearErr(e.target); saveDraft(); });
+  $('#exClassIn').addEventListener('input', e => { draft.klass = e.target.value; saveDraft(); });
+  $('#exDurIn').addEventListener('input', e => { draft.duration = e.target.value; saveDraft(); });
+  $('#exDurIn').addEventListener('change', e => { draft.duration = clamp(Math.round(+e.target.value) || 30, 1, 300); e.target.value = draft.duration; saveDraft(); });
+  $$('input[name="reveal"]').forEach(r => r.addEventListener('change', () => { draft.reveal = r.value; saveDraft(); }));
+
+  const list = $('#qList');
+  list.addEventListener('input', e => {
+    const t = e.target, card = t.closest('[data-q]'); if (!card) return;
+    const q = draft.questions[+card.dataset.q], f = t.dataset.field;
+    if (f === 'text') q.text = t.value;
+    else if (f === 'option') q.options[+t.dataset.opt] = t.value;
+    else if (f === 'expected') q.expected = t.value;
+    else if (f === 'points') { q.points = clamp(Math.round(+t.value) || 1, 1, 100); updateTotals(); }
+    else return;
+    clearErr(t); saveDraft();
+  });
+  list.addEventListener('change', e => {
+    const t = e.target, card = t.closest('[data-q]'); if (!card) return;
+    const i = +card.dataset.q, q = draft.questions[i], f = t.dataset.field;
+    if (f === 'type') {
+      q.type = t.value;
+      if (q.type === 'mcq' && q.options.length < 2) q.options = ['', '', ''];
+      renderEditor();
+      $(`input[data-field="type"]:checked`, qCard(i))?.focus();
+    }
+    else if (f === 'correct') q.correct = +t.value;
+    else if (f === 'allowDraw') q.allowDraw = t.checked;
+    else if (f === 'points') t.value = q.points;
+    else return;
+    saveDraft();
+  });
+  list.addEventListener('click', e => {
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    const i = +b.closest('[data-q]').dataset.q, qs = draft.questions;
+    const focusIn = (idx, sel) => { const c = qCard(idx); const el = c && ($(sel, c) && !$(sel, c).disabled ? $(sel, c) : $('textarea', c)); el?.focus(); };
+    switch (b.dataset.act) {
+      case 'up': if (i > 0) { [qs[i - 1], qs[i]] = [qs[i], qs[i - 1]]; renderEditor(); focusIn(i - 1, '[data-act="up"]'); } break;
+      case 'down': if (i < qs.length - 1) { [qs[i + 1], qs[i]] = [qs[i], qs[i + 1]]; renderEditor(); focusIn(i + 1, '[data-act="down"]'); } break;
+      case 'dup': qs.splice(i + 1, 0, normQ(JSON.parse(JSON.stringify(qs[i])))); renderEditor(); focusIn(i + 1, 'textarea'); toast('Question dupliquée.'); break;
+      case 'del': {
+        const removed = qs.splice(i, 1)[0];
+        renderEditor();
+        toast(`Question ${i + 1} supprimée.`, { action:{ label:'Annuler', fn:() => { draft.questions.splice(i, 0, removed); renderEditor(); saveDraft(); } } });
+        break;
+      }
+      case 'addopt': if (qs[i].options.length < 6) { qs[i].options.push(''); renderEditor(); $$('[data-field="option"]', qCard(i)).pop()?.focus(); } break;
+      case 'delopt': {
+        const j = +b.dataset.opt, q = qs[i];
+        if (q.options.length > 2) {
+          q.options.splice(j, 1);
+          if (q.correct === j) q.correct = 0; else if (q.correct > j) q.correct--;
+          renderEditor(); focusIn(i, `[data-field="option"][data-opt="${Math.max(0, j - 1)}"]`);
+        }
+        break;
+      }
+    }
+    saveDraft();
+  });
+
+  $$('[data-add]').forEach(b => b.addEventListener('click', () => {
+    draft.questions.push(newQ(b.dataset.add));
+    renderEditor(); saveDraft();
+    const card = qCard(draft.questions.length - 1);
+    card.scrollIntoView({ block:'center', behavior: reducedMotion() ? 'auto' : 'smooth' });
+    $('textarea', card).focus({ preventScroll:true });
+  }));
+  $('#btnPublish').addEventListener('click', publish);
+  $('#btnClearDraft').addEventListener('click', async () => {
+    if (!draftHasContent()) return toast('Le brouillon est déjà vide.');
+    if (!await confirmDlg('Vider le brouillon ?', '<p>Le titre et toutes les questions en cours de création seront effacés.</p>', { ok:'Vider', danger:true })) return;
+    draft = emptyDraft(); store.set(K.draft, draft); $('#draftState').textContent = ''; renderProf();
+    toast('Brouillon vidé.');
+  });
+
+  $('#examList').addEventListener('click', async e => {
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    const code = b.closest('[data-code]').dataset.code, exam = getExams().find(x => x.code === code);
+    if (!exam) return;
+    if (b.dataset.act === 'test') goTest(code);
+    else if (b.dataset.act === 'copies') { resFilter = code; resTab = 'copies'; go('resultats'); }
+    else if (b.dataset.act === 'reuse') {
+      if (draftHasContent() && !await confirmDlg('Remplacer le brouillon ?', '<p>Le brouillon en cours sera remplacé par une copie de cet examen.</p>', { ok:'Remplacer' })) return;
+      draft = { title: exam.title + ' (copie)', klass: exam.klass, duration: exam.duration, reveal: exam.reveal, questions: exam.questions.map(q => normQ(JSON.parse(JSON.stringify(q)))) };
+      saveDraft(); renderProf();
+      $('#exTitleIn').focus(); $('#exTitleIn').scrollIntoView({ block:'center', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      toast('Examen chargé dans l’éditeur.', { type:'success' });
+    }
+    else if (b.dataset.act === 'delexam') {
+      if (!await confirmDlg('Supprimer cet examen ?', `<p>«&nbsp;${esc(exam.title)}&nbsp;» (code <strong>${esc(code)}</strong>) ne pourra plus être passé. Les copies déjà reçues restent visibles dans « Résultats ».</p>`, { ok:'Supprimer', danger:true })) return;
+      store.set(K.exams, getExams().filter(x => x.code !== code));
+      renderExamList(); toast('Examen supprimé.');
+    }
+  });
+}
+
+/* =========================================================
+   8. Espace élève
+   ========================================================= */
+function renderStudent() {
+  $$('#studentForm .invalid').forEach(clearErr);
+  const pre = sess.get(S.prefill, null);
+  if (pre) {
+    $('#stCode').value = pre; sess.del(S.prefill);
+    setTimeout(() => ($('#stName').value.trim() ? $('#studentForm button[type="submit"]') : $('#stName')).focus(), 60);
+  }
+}
+async function prepareExam(name, code) {
+  let exam = getExams().find(e => e.code === code);
+  if (!exam && code === DEMO_CODE) { seedDemo(); exam = getExams().find(e => e.code === code); }
+  if (!exam) return false;
+  const pts = exam.questions.reduce((s, q) => s + q.points, 0);
+  const canFs = !!document.documentElement.requestFullscreen;
+  const ok = await dialog({
+    title: exam.title, icon:'file',
+    html:`<p>${esc(name)}, voici les règles avant de commencer.</p>
+      <dl class="facts"><div><dt>Durée</dt><dd>${exam.duration} min</dd></div><div><dt>Questions</dt><dd>${exam.questions.length}</dd></div><div><dt>Total</dt><dd>${pts} pts</dd></div></dl>
+      <ul class="rules">
+        <li>${ic('clock')}<span>Le chronomètre démarre dès que tu cliques sur « Démarrer ». À la fin, la copie est rendue automatiquement.</span></li>
+        <li>${ic('check')}<span>Tes réponses sont enregistrées au fur et à mesure, même si la page se recharge.</span></li>
+        <li>${ic('eye')}<span>Quitter l’onglet ou la fenêtre est signalé au professeur. Une sortie n’est pas une preuve de triche.</span></li>
+        <li>${ic(exam.reveal === 'each' ? 'list' : 'flag')}<span>${exam.reveal === 'each' ? 'La correction s’affiche après chaque question.' : 'La correction s’affiche à la fin de l’examen.'}</span></li>
+      </ul>
+      ${canFs ? `<label class="check"><input type="checkbox" id="fsOpt" checked> <span>Passer en plein écran (recommandé)</span></label>` : ''}`,
+    actions:[{ label:'Annuler', value:false }, { label:'Démarrer l’examen', value:true, kind:'primary', icon:'play', autofocus:true }]
+  });
+  if (!ok) return true;
+  const fs = canFs && !!$('#fsOpt')?.checked;
+  session = {
+    exam, name, started: Date.now(), deadline: Date.now() + exam.duration * 60000, idx: 0,
+    answers: exam.questions.map(() => ({ value:'', draw:null, locked:false })),
+    alerts: 0, fs, lastExit: 0, w5: false, w1: false
+  };
+  saveSession();
+  if (fs) document.documentElement.requestFullscreen().catch(() => { if (session) { session.fs = false; saveSession(); } });
+  go('examen');
+  return true;
+}
+function wireStudent() {
+  $('#studentForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const nameIn = $('#stName'), codeIn = $('#stCode');
+    [nameIn, codeIn].forEach(clearErr);
+    const name = nameIn.value.trim().replace(/\s+/g, ' '), code = codeIn.value.trim().replace(/\s+/g, '').toUpperCase();
+    let bad = null;
+    if (!name) bad = bad || setErr(nameIn, 'Indique ton prénom et ton nom.');
+    if (!code) bad = bad || setErr(codeIn, 'Entre le code donné par ton professeur.');
+    else if (!getExams().some(x => x.code === code) && code !== DEMO_CODE) bad = bad || setErr(codeIn, 'Code introuvable. Dans cette démo, l’examen doit avoir été créé dans ce même navigateur.');
+    if (bad) return bad.focus();
+    codeIn.value = code;
+    await prepareExam(name, code);
+  });
+  $('[data-demo-student]').addEventListener('click', () => {
+    const name = $('#stName').value.trim() || 'Élève de démonstration';
+    $('#stCode').value = DEMO_CODE;
+    prepareExam(name, DEMO_CODE);
+  });
+}
+
+/* =========================================================
+   9. Examen en cours
+   ========================================================= */
+let ticker = null, pendingNotice = null;
+const saveSession = () => { if (session) sess.set(S.session, session); else sess.del(S.session); };
+let saveTimer = null;
+const saveSessionSoon = () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveSession, 300); };
+const curQ = () => session.exam.questions[session.idx];
+const curA = () => session.answers[session.idx];
+const answeredCount = () => session.exam.questions.filter((q, i) => hasAnswer(q, session.answers[i])).length;
+
+/* ----- Feuille de dessin ----- */
+const Draw = (() => {
+  const W = 1000, H = 600;
+  const st = { tool:'pen', color:'#1b2b24', size:6 };
+  let cv = null, ctx = null, history = [], base = null, start = null, last = null, drawing = false, dirty = false, initial = false, onSave = null, timer = null;
+  const isFree = () => st.tool === 'pen' || st.tool === 'eraser';
+  function mount(canvas, dataURL, locked, save) {
+    unmount();
+    cv = canvas; ctx = cv.getContext('2d', { willReadFrequently:true });
+    cv.width = W; cv.height = H; history = []; initial = dirty = !!dataURL; onSave = locked ? null : save;
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    if (dataURL) { const img = new Image(); img.onload = () => { if (cv === canvas) ctx.drawImage(img, 0, 0, W, H); }; img.src = dataURL; }
+    if (locked) return;
+    cv.addEventListener('pointerdown', down);
+    cv.addEventListener('pointermove', move);
+    cv.addEventListener('pointerup', up);
+    cv.addEventListener('pointercancel', up);
+  }
+  function pt(e) { const r = cv.getBoundingClientRect(); return { x:(e.clientX - r.left) * W / r.width, y:(e.clientY - r.top) * H / r.height }; }
+  function pen() { ctx.globalCompositeOperation = 'source-over'; ctx.strokeStyle = st.tool === 'eraser' ? '#ffffff' : st.color; ctx.lineWidth = st.tool === 'eraser' ? st.size * 4 : st.size; }
+  function down(e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    e.preventDefault();
+    try { cv.setPointerCapture(e.pointerId); } catch {}
+    drawing = true;
+    history.push(ctx.getImageData(0, 0, W, H)); if (history.length > 30) history.shift();
+    base = history[history.length - 1];
+    start = last = pt(e); pen();
+    if (isFree()) { ctx.beginPath(); ctx.moveTo(start.x, start.y); ctx.lineTo(start.x + .1, start.y + .1); ctx.stroke(); }
+  }
+  function move(e) {
+    if (!drawing) return;
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    for (const ev of (evs.length ? evs : [e])) {
+      const p = pt(ev);
+      if (isFree()) { ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+      last = p;
+    }
+    if (!isFree()) { ctx.putImageData(base, 0, 0); shape(start, last); }
+  }
+  function shape(a, b) {
+    pen(); ctx.beginPath();
+    if (st.tool === 'line') { ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); }
+    else if (st.tool === 'rect') ctx.rect(Math.min(a.x, b.x), Math.min(a.y, b.y), Math.abs(b.x - a.x), Math.abs(b.y - a.y));
+    else ctx.ellipse((a.x + b.x) / 2, (a.y + b.y) / 2, Math.max(1, Math.abs(b.x - a.x) / 2), Math.max(1, Math.abs(b.y - a.y) / 2), 0, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+  function up() {
+    if (!drawing) return;
+    drawing = false;
+    if (!isFree()) { ctx.putImageData(base, 0, 0); shape(start, last); }
+    dirty = true; schedule();
+  }
+  function schedule() { clearTimeout(timer); timer = setTimeout(save, 350); }
+  function exportURL() { let u = cv.toDataURL('image/webp', .85); if (!u.startsWith('data:image/webp')) u = cv.toDataURL('image/png'); return u; }
+  function save() { timer = null; if (onSave && cv) onSave(dirty ? exportURL() : null); }
+  function flush() { if (timer) { clearTimeout(timer); save(); } }
+  function undo() { if (!cv || !onSave || !history.length) return false; ctx.putImageData(history.pop(), 0, 0); dirty = history.length > 0 || initial; schedule(); return true; }
+  function clear() { if (!cv || !onSave) return; history.push(ctx.getImageData(0, 0, W, H)); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H); dirty = false; schedule(); }
+  function unmount() { flush(); cv = null; ctx = null; onSave = null; history = []; drawing = false; }
+  return { mount, flush, undo, clear, unmount, st, active: () => !!(cv && onSave) };
+})();
+
+const COLORS = [['#1b2b24', 'Encre'], ['#167a57', 'Vert'], ['#1f5fbf', 'Bleu'], ['#c0392b', 'Rouge']];
+const SIZES = [[3, 'Fin', 6], [6, 'Moyen', 10], [12, 'Épais', 15]];
+const TOOLS = [['pen', 'pencil', 'Crayon'], ['line', 'line', 'Ligne'], ['rect', 'square', 'Rectangle'], ['circle', 'circle', 'Cercle'], ['eraser', 'eraser', 'Gomme']];
+function drawingHTML(locked) {
+  return `<div class="draw ${locked ? 'locked' : ''}">
+    <div class="draw-head"><h3>${ic('pencil')} Feuille de dessin</h3><span class="hint">${locked ? 'Dessin enregistré.' : 'Schéma, symbole, graphique… au doigt ou à la souris.'}</span></div>
+    ${locked ? '' : `<div class="draw-bar" role="toolbar" aria-label="Outils de dessin">
+      <div class="seg seg-tools" role="radiogroup" aria-label="Outil">${TOOLS.map(([id, icn, l]) => `<label class="seg-opt" title="${l}"><input type="radio" name="tool" value="${id}" ${Draw.st.tool === id ? 'checked' : ''} aria-label="${l}"><span>${ic(icn)}<span class="lbl">${l}</span></span></label>`).join('')}</div>
+      <div class="swatches" role="radiogroup" aria-label="Couleur">${COLORS.map(([c, n]) => `<label class="sw" title="${n}"><input type="radio" name="color" value="${c}" ${Draw.st.color === c ? 'checked' : ''} aria-label="${n}"><span class="sw-c" style="--c:${c}"></span></label>`).join('')}</div>
+      <div class="seg" role="radiogroup" aria-label="Épaisseur">${SIZES.map(([s, n, d]) => `<label class="seg-opt" title="${n}"><input type="radio" name="size" value="${s}" ${Draw.st.size === s ? 'checked' : ''} aria-label="${n}"><span><span class="size-dot" style="width:${d}px;height:${d}px"></span></span></label>`).join('')}</div>
+      <div class="draw-actions">
+        <button type="button" class="icon-btn" data-draw="undo" aria-label="Annuler le dernier trait" title="Annuler (Ctrl+Z)">${ic('undo')}</button>
+        <button type="button" class="icon-btn danger" data-draw="clear" aria-label="Effacer tout le dessin" title="Tout effacer">${ic('trash')}</button>
+      </div>
+    </div>`}
+    <canvas width="1000" height="600" role="img" aria-label="Zone de dessin"></canvas>
+  </div>`;
+}
+
+function feedbackHTML(q, a) {
+  if (q.type === 'essay') return `<div class="notice info">${ic('pencil')}<div>Réponse enregistrée. Elle sera corrigée par le professeur.</div></div>`;
+  const g = grade(q, a);
+  return g.correct
+    ? `<div class="notice ok">${ic('check')}<div><strong>Bonne réponse !</strong> +${g.points} ${pl(g.points, 'point', 'points')}</div></div>`
+    : `<div class="notice ko">${ic('x')}<div><strong>Réponse enregistrée.</strong> Correction : ${esc(correctText(q))}</div></div>`;
+}
+
+function renderExam() {
+  if (!session) return;
+  const { exam, idx } = session, q = curQ(), a = curA(), locked = !!a.locked;
+  $('#exTitle').textContent = exam.title;
+  $('#exStep').textContent = `Question ${idx + 1} sur ${exam.questions.length}`;
+  let html = `<div class="q-meta"><span class="tag">${ic(TYPES[q.type].icon)}${TYPES[q.type].label}</span><span class="muted small">${q.points} ${pl(q.points, 'point', 'points')}</span></div>
+    <h2 class="q-text" id="qText">${esc(q.text)}</h2>`;
+  if (q.type === 'mcq') {
+    html += `<div class="choices" role="radiogroup" aria-labelledby="qText">${q.options.map((o, j) => {
+      const on = String(a.value) === String(j);
+      let cls = on ? 'is-on' : '';
+      if (locked) cls = 'locked ' + (j === q.correct ? 'is-correct' : on ? 'is-wrong' : '');
+      return `<label class="choice ${cls}"><input type="radio" name="resp" value="${j}" ${on ? 'checked' : ''} ${locked ? 'disabled' : ''}><span class="choice-mark" aria-hidden="true">${String.fromCharCode(65 + j)}</span><span class="choice-text">${esc(o)}</span></label>`;
+    }).join('')}</div>`;
+  } else if (q.type === 'short') {
+    html += `<div class="field"><label for="resp">Ta réponse</label><input type="text" id="resp" value="${esc(a.value)}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Écris ta réponse…" ${locked ? 'readonly' : ''}></div>`;
+  } else {
+    html += `<div class="field"><label for="resp">Ta réponse rédigée</label><textarea id="resp" rows="6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Écris ta réponse ici…" ${locked ? 'readonly' : ''}>${esc(a.value)}</textarea><p class="hint" id="wc">${wordCount(a.value)}</p></div>`;
+    if (q.allowDraw) html += drawingHTML(locked);
+  }
+  html += `<div id="qFeedback" aria-live="polite">${locked ? feedbackHTML(q, a) : ''}</div><p class="field-err" id="qErr" role="alert"></p>`;
+  $('#qArea').innerHTML = html;
+  if (q.type === 'essay' && q.allowDraw) {
+    const at = idx;
+    Draw.mount($('#qArea canvas'), a.draw, locked, url => { if (!session) return; session.answers[at].draw = url; saveSessionSoon(); renderNavDots(); });
+  } else Draw.unmount();
+  renderNavDots();
+  updateExamButtons();
+  updateAlertChip();
+  if (!ticker) { ticker = setInterval(tick, 500); }
+  tick();
+}
+function renderNavDots() {
+  if (!session) return;
+  const { exam, idx, answers } = session;
+  $('#qNav').innerHTML = exam.questions.map((q, i) => {
+    const done = hasAnswer(q, answers[i]), lk = answers[i].locked;
+    return `<button type="button" class="dot ${lk ? 'locked' : done ? 'done' : ''} ${i === idx ? 'current' : ''}" data-go="${i}" aria-label="Question ${i + 1}${done ? ', répondue' : ''}" ${i === idx ? 'aria-current="step"' : ''}>${lk ? ic('check') : i + 1}</button>`;
+  }).join('');
+  $('#exProgress').style.setProperty('--p', answeredCount() / exam.questions.length);
+}
+function updateExamButtons() {
+  const { exam, idx } = session, a = curA(), last = idx === exam.questions.length - 1, each = exam.reveal === 'each';
+  $('#btnPrev').disabled = idx === 0;
+  let label, icon = 'arrow', finishing = false;
+  if (each && !a.locked) { label = 'Valider ma réponse'; icon = 'check'; }
+  else if (last) { label = 'Terminer l’examen'; icon = 'flag'; finishing = true; }
+  else label = each ? 'Question suivante' : 'Enregistrer et continuer';
+  $('#btnNext').innerHTML = `${esc(label)} ${ic(icon)}`;
+  $('#btnFinish').hidden = finishing;
+}
+function updateAlertChip() {
+  const chip = $('#exAlerts'); if (!session) return;
+  chip.hidden = !session.alerts;
+  $('span', chip).textContent = `${session.alerts} ${pl(session.alerts, 'sortie', 'sorties')}`;
+}
+function goQuestion(i) {
+  if (!session) return;
+  Draw.flush();
+  session.idx = clamp(i, 0, session.exam.questions.length - 1);
+  saveSession(); renderExam();
+  window.scrollTo({ top:0, behavior: reducedMotion() ? 'auto' : 'smooth' });
+  $('#qText')?.setAttribute('tabindex', '-1');
+}
+function showQErr() {
+  $('#qErr').textContent = 'Réponds avant de continuer, ou choisis une autre question dans la barre du haut.';
+  ($('#qArea input:not([disabled])') || $('#qArea textarea'))?.focus();
+}
+function onNext() {
+  if (!session) return;
+  const q = curQ(), a = curA(), last = session.idx === session.exam.questions.length - 1;
+  Draw.flush();
+  if (session.exam.reveal === 'each') {
+    if (!a.locked) {
+      if (!hasAnswer(q, a)) return showQErr();
+      a.locked = true; saveSession(); renderExam();
+      $('#btnNext').focus();
+      return;
+    }
+    return last ? askFinish() : goQuestion(session.idx + 1);
+  }
+  if (last) return askFinish();
+  if (!hasAnswer(q, a)) return showQErr();
+  goQuestion(session.idx + 1);
+}
+async function askFinish() {
+  if (!session) return;
+  Draw.flush();
+  const missing = session.exam.questions.filter((q, i) => !hasAnswer(q, session.answers[i])).length;
+  const ok = await confirmDlg('Rendre ta copie ?',
+    missing ? `<p>Il reste <strong>${missing} ${pl(missing, 'question sans réponse', 'questions sans réponse')}</strong>. Une fois rendue, ta copie ne pourra plus être modifiée.</p>`
+            : '<p>Toutes les questions ont une réponse. Une fois rendue, ta copie ne pourra plus être modifiée.</p>',
+    { ok:'Rendre ma copie', icon:'send' });
+  if (ok && session) finishExam(false);
+}
+function finishExam(auto) {
+  if (!session) return;
+  Draw.flush();
+  clearInterval(ticker); ticker = null;
+  const { exam } = session, now = Date.now();
+  const answers = exam.questions.map((q, i) => { const a = session.answers[i]; return { value: a.value, draw: a.draw || null, ...grade(q, a) }; });
+  const r = { id:'r' + uid(), code: exam.code, title: exam.title, name: session.name, answers, alerts: session.alerts, ts: now, date: fmtDate(now), questions: exam.questions, manual:{}, comment:'', auto: !!auto, reveal: exam.reveal };
+  const results = store.get(K.results, []);
+  results.push(r);
+  if (!store.set(K.results, results)) {
+    r.answers.forEach(x => { x.draw = null; }); r.drawingsDropped = true;
+    results[results.length - 1] = r;
+    store.set(K.results, results);
+  }
+  lastResultMem = r; sess.set(S.last, r.id);
+  session = null; saveSession();
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  if ($('#dlg').open) $('#dlg').close('');
+  if (auto) toast('Temps écoulé : ta copie a été rendue automatiquement.', { type:'warn', timeout:6000 });
+  go('termine');
+}
+function tick() {
+  if (!session) { clearInterval(ticker); ticker = null; return; }
+  const rem = Math.max(0, session.deadline - Date.now()), s = Math.ceil(rem / 1000), el = $('#exTimer');
+  $('#exTimerTxt').textContent = fmtClock(s);
+  el.classList.toggle('warn', s <= 300 && s > 60);
+  el.classList.toggle('danger', s <= 60);
+  el.setAttribute('aria-label', `Temps restant : ${fmtClock(s)}`);
+  if (s <= 300 && s > 60 && !session.w5 && session.exam.duration > 5) { session.w5 = true; saveSession(); announce('Plus que 5 minutes.'); toast('Plus que 5 minutes.', { type:'warn' }); }
+  if (s <= 60 && s > 0 && !session.w1) { session.w1 = true; saveSession(); announce('Dernière minute.'); toast('Dernière minute !', { type:'warn' }); }
+  if (rem <= 0) finishExam(true);
+}
+
+/* ----- Surveillance (sorties d’onglet, de fenêtre, du plein écran) ----- */
+let unloading = false, unloadTimer = null;
+function logEvent(event, kind = 'exit') {
+  if (!session || unloading) return; // un rechargement de la page n’est pas une sortie
+  const now = Date.now();
+  if (kind === 'exit') {
+    if (now - (session.lastExit || 0) < 2000) return; // évite de compter deux fois la même sortie
+    session.lastExit = now; session.alerts++;
+    pendingNotice = event;
+  }
+  saveSession();
+  const log = getAlerts();
+  log.push({ name: session.name, code: session.exam.code, title: session.exam.title, time: fmtDate(now), ts: now, event, kind });
+  store.set(K.alerts, log);
+}
+function showExitNotice() {
+  if (!session || currentView !== 'examen') return;
+  updateAlertChip();
+  const box = $('#exNotice');
+  if (session.fs && !document.fullscreenElement && document.documentElement.requestFullscreen) {
+    box.innerHTML = `<div class="notice warn">${ic('maximize')}<div><strong>Tu as quitté le plein écran.</strong> Cette sortie a été signalée au professeur. Ce n’est pas une preuve de triche.<br><button type="button" class="btn btn-ghost btn-sm" data-refs>${ic('maximize')} Revenir en plein écran</button></div></div>`;
+    pendingNotice = null;
+    return;
+  }
+  if (!pendingNotice) return;
+  const ev = pendingNotice; pendingNotice = null;
+  box.innerHTML = `<div class="notice warn">${ic('eye')}<div><strong>Sortie détectée :</strong> ${esc(ev.toLowerCase())}. Elle a été signalée au professeur. Ce n’est pas une preuve de triche : reste simplement sur cette page.</div><button type="button" class="icon-btn" data-close-notice aria-label="Fermer ce message">${ic('x')}</button></div>`;
+}
+function wireMonitoring() {
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) logEvent('Onglet quitté ou application en arrière-plan');
+    else showExitNotice();
+  });
+  window.addEventListener('blur', () => setTimeout(() => { if (!document.hidden) logEvent('Clic en dehors de la page'); }, 60));
+  window.addEventListener('focus', showExitNotice);
+  document.addEventListener('fullscreenchange', () => {
+    if (!session) return;
+    if (session.fs && !document.fullscreenElement) { logEvent('Sortie du plein écran'); showExitNotice(); }
+    else if (document.fullscreenElement) $('#exNotice').innerHTML = '';
+  });
+  window.addEventListener('beforeunload', e => {
+    if (!session) return;
+    Draw.flush(); saveSession();
+    unloading = true; clearTimeout(unloadTimer);
+    unloadTimer = setTimeout(() => { unloading = false; }, 8000);
+    e.preventDefault(); e.returnValue = '';
+  });
+  // Si l’élève annule le rechargement et reste sur la page, la surveillance reprend.
+  ['pointerdown', 'keydown'].forEach(t => window.addEventListener(t, () => { if (unloading) { unloading = false; clearTimeout(unloadTimer); } }, true));
+}
+
+function wireExam() {
+  const area = $('#qArea');
+  area.addEventListener('input', e => {
+    if (!session) return;
+    const t = e.target, a = curA();
+    if (a.locked) return;
+    if (t.name === 'resp') { a.value = t.value; $$('.choice', area).forEach(l => l.classList.toggle('is-on', $('input', l).checked)); }
+    else if (t.id === 'resp') { a.value = t.value; const wc = $('#wc'); if (wc) wc.textContent = wordCount(t.value); }
+    else if (t.name === 'tool') { Draw.st.tool = t.value; return; }
+    else if (t.name === 'color') { Draw.st.color = t.value; if (Draw.st.tool === 'eraser') { Draw.st.tool = 'pen'; const p = $('input[name="tool"][value="pen"]', area); if (p) p.checked = true; } return; }
+    else if (t.name === 'size') { Draw.st.size = +t.value; return; }
+    else return;
+    $('#qErr').textContent = '';
+    saveSessionSoon(); renderNavDots();
+  });
+  area.addEventListener('click', e => {
+    const b = e.target.closest('[data-draw]'); if (!b) return;
+    if (b.dataset.draw === 'undo') { if (!Draw.undo()) toast('Rien à annuler.'); }
+    else { Draw.clear(); toast('Dessin effacé.', { action:{ label:'Annuler', fn:() => Draw.undo() } }); }
+  });
+  area.addEventListener('paste', e => { if (e.target.id === 'resp') logEvent('Texte collé dans une réponse', 'info'); });
+  area.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'resp' && e.target.tagName === 'INPUT') { e.preventDefault(); onNext(); } });
+  $('#qNav').addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) goQuestion(+b.dataset.go); });
+  $('#btnPrev').addEventListener('click', () => session && goQuestion(session.idx - 1));
+  $('#btnNext').addEventListener('click', onNext);
+  $('#btnFinish').addEventListener('click', askFinish);
+  $('#exNotice').addEventListener('click', e => {
+    if (e.target.closest('[data-close-notice]')) $('#exNotice').innerHTML = '';
+    if (e.target.closest('[data-refs]')) document.documentElement.requestFullscreen?.().catch(() => toast('Le plein écran n’est pas disponible.', { type:'error' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (currentView !== 'examen' || !(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== 'z') return;
+    const tag = document.activeElement?.tagName;
+    if (tag === 'INPUT' && document.activeElement.type === 'text' || tag === 'TEXTAREA') return;
+    if (Draw.active()) { e.preventDefault(); Draw.undo(); }
+  });
+}
+
+/* =========================================================
+   10. Copie rendue
+   ========================================================= */
+function getLastResult() {
+  const id = sess.get(S.last, null);
+  return (id && getResults().find(r => r.id === id)) || lastResultMem;
+}
+function answerBlock(r, q, i, mode) {
+  const a = r.answers[i] || {};
+  let ans;
+  if (q.type === 'mcq') ans = (a.value === '' || a.value == null) ? '<em class="muted">Sans réponse</em>' : esc(q.options[+a.value] ?? '—');
+  else ans = String(a.value ?? '').trim() ? `<span class="pre">${esc(a.value)}</span>` : `<em class="muted">${q.type === 'essay' ? 'Sans réponse écrite' : 'Sans réponse'}</em>`;
+  let verdict;
+  if (q.type === 'essay') {
+    if (mode === 'teacher') {
+      const m = r.manual[i];
+      verdict = `<label class="grade">Note <input type="number" min="0" max="${q.points}" step="0.5" value="${m ?? ''}" data-grade="${i}" placeholder="–" aria-label="Note de la question ${i + 1}, sur ${q.points}"> / ${q.points}</label>`;
+    } else {
+      const m = r.manual[i];
+      verdict = m == null ? `<span class="verdict todo">${ic('pencil')} Corrigée par le professeur</span>` : `<span class="verdict ok">${ic('check')} ${fmtNum(+m)}/${q.points}</span>`;
+    }
+  } else if (a.correct) verdict = `<span class="verdict ok">${ic('check')} Juste · ${q.points}/${q.points}</span>`;
+  else verdict = `<span class="verdict ko">${ic('x')} ${a.skipped ? 'Sans réponse' : 'Faux'} · 0/${q.points}</span>`;
+  const expect = (q.type !== 'essay' && !a.correct) ? `<p class="expect">Réponse attendue : <strong>${esc(correctText(q))}</strong></p>` : '';
+  const img = a.draw ? `<button type="button" class="drawing-thumb" data-zoom="${i}" aria-label="Agrandir le dessin de la question ${i + 1}"><img src="${a.draw}" alt="Dessin de la question ${i + 1}" loading="lazy" width="1000" height="600"></button>` : '';
+  const yours = mode === 'student' ? '<span class="muted small">Ta réponse : </span>' : '';
+  return `<div class="ans"><div class="ans-head"><span class="qnum sm">${i + 1}</span><p class="ans-q">${esc(q.text)}</p>${verdict}</div><div class="ans-body"><p>${yours}${ans}</p>${expect}${img}</div></div>`;
+}
+function renderDone() {
+  const r = getLastResult(); if (!r) return;
+  const s = scoreOf(r), per = sheetsPerCopy();
+  const n = r.questions.length, answered = r.questions.filter((q, i) => hasAnswer(q, r.answers[i])).length;
+  const pct = s.autoMax ? s.auto / s.autoMax : 0, C = 2 * Math.PI * 52;
+  $('#doneBody').innerHTML = `
+    <div class="card done-card">
+      <div class="done-ic">${ic('check')}</div>
+      <h1 id="h-done">Copie enregistrée</h1>
+      <p class="lead-sm" style="margin:0 auto">Merci ${esc(r.name)}. Ta copie de «&nbsp;${esc(r.title)}&nbsp;» est enregistrée sur cet appareil${r.auto ? ' (rendue automatiquement à la fin du temps)' : ''}.</p>
+      <div class="done-stats">
+        <div class="ring" role="img" aria-label="Score provisoire : ${fmtNum(s.auto)} sur ${s.autoMax}">
+          <svg viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52" stroke-dasharray="${C}" stroke-dashoffset="${C}" data-off="${C * (1 - pct)}"/></svg>
+          <div class="ring-txt"><strong>${s.autoMax ? fmtNum(s.auto) : '—'}</strong><span>${s.autoMax ? `sur ${s.autoMax}` : 'pas de QCM'}</span></div>
+        </div>
+        <ul class="done-facts">
+          <li>${ic('check')}<span><strong>${answered}/${n}</strong> ${pl(n, 'réponse donnée', 'réponses données')}</span></li>
+          ${s.manualMax ? `<li>${ic('pencil')}<span><strong>${s.manualMax} ${pl(s.manualMax, 'point', 'points')}</strong> de rédaction à corriger par le professeur</span></li>` : ''}
+          <li>${ic('leaf')}<span><strong>≈ ${fmtNum(per)} ${pl(per, 'feuille', 'feuilles')}</strong> non ${pl(per, 'imprimée', 'imprimées')} pour cette copie</span></li>
+        </ul>
+      </div>
+      <p class="hint">Score provisoire : seuls les QCM et les réponses courtes sont corrigés automatiquement.</p>
+      ${r.drawingsDropped ? `<div class="notice warn">${ic('alert')}<div>Le stockage du navigateur était plein : les dessins n’ont pas pu être enregistrés.</div></div>` : ''}
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>Correction</h2><span class="tag">${ic('flag')} ${r.reveal === 'each' ? 'Après chaque question' : 'À la fin'}</span></div>
+      ${r.questions.map((q, i) => answerBlock(r, q, i, 'student')).join('')}
+    </div>
+    <div class="done-actions"><a class="btn btn-primary btn-lg" href="#accueil">${ic('home')} Retour à l’accueil</a></div>`;
+  requestAnimationFrame(() => requestAnimationFrame(() => { const fg = $('#doneBody .ring-fg'); if (fg) fg.style.strokeDashoffset = fg.dataset.off; }));
+}
+
+/* =========================================================
+   11. Surveillance et résultats
+   ========================================================= */
+let resFilter = 'all', resTab = 'copies';
+const openCopies = new Set();
+let lastCounts = null;
+
+function copySummary(r) {
+  const s = scoreOf(r);
+  return `<span class="avatar" aria-hidden="true">${esc(initials(r.name))}</span>
+    <span class="copy-main"><strong>${esc(r.name)}</strong><span class="meta">${esc(r.title)} · ${esc(r.code)} · ${esc(r.date || '—')}</span></span>
+    <span class="copy-chips">
+      ${r.alerts ? `<span class="chip chip-warn">${ic('eye')} ${r.alerts} ${pl(r.alerts, 'sortie', 'sorties')}</span>` : ''}
+      ${s.pending ? `<span class="chip chip-todo">${ic('pencil')} À corriger</span>` : `<span class="chip chip-ok">${ic('check')} Corrigée</span>`}
+      <span class="score">${fmtNum(s.total)}<small> / ${s.max}</small></span>
+    </span>
+    ${ic('down', 'chev')}`;
+}
+function copyCard(r) {
+  return `<details class="copy" data-id="${esc(r.id)}" ${openCopies.has(r.id) ? 'open' : ''}>
+    <summary>${copySummary(r)}</summary>
+    <div class="copy-body">
+      ${r.questions.map((q, i) => answerBlock(r, q, i, 'teacher')).join('')}
+      <div class="field" style="margin-top:14px"><label for="cm-${esc(r.id)}">Commentaire pour l’élève</label><textarea id="cm-${esc(r.id)}" data-comment rows="2" placeholder="Bravo pour ton schéma…">${esc(r.comment)}</textarea></div>
+      <div class="copy-foot"><span class="hint">${r.auto ? 'Rendue automatiquement (temps écoulé).' : ''}${r.drawingsDropped ? ' Dessins non enregistrés (stockage plein).' : ''}</span>
+        <button type="button" class="btn btn-danger-ghost btn-sm" data-act="delcopy">${ic('trash')} Supprimer la copie</button></div>
+    </div>
+  </details>`;
+}
+function renderResults() {
+  const exams = getExams(), results = getResults(), alerts = getAlerts();
+  lastCounts = { results: results.length, alerts: alerts.length };
+  $('#liveRefresh').hidden = true;
+  const names = new Map(exams.map(e => [e.code, e.title]));
+  results.forEach(r => { if (!names.has(r.code)) names.set(r.code, r.title + ' (supprimé)'); });
+  if (resFilter !== 'all' && !names.has(resFilter)) resFilter = 'all';
+  $('#resFilter').innerHTML = `<option value="all">Tous les examens</option>` + [...names].map(([c, t]) => `<option value="${esc(c)}" ${resFilter === c ? 'selected' : ''}>${esc(t)} — ${esc(c)}</option>`).join('');
+
+  const fr = results.filter(r => resFilter === 'all' || r.code === resFilter).reverse();
+  const fa = alerts.filter(a => resFilter === 'all' || a.code === resFilter).slice().reverse();
+  const exits = alerts.filter(a => a.kind !== 'info').length, per = sheetsPerCopy(), sheets = results.length * per;
+  const nAnswers = results.reduce((s, r) => s + r.questions.length, 0);
+
+  $('#resStats').innerHTML = `<div class="stats">
+      <div class="stat stat-eco">${ic('leaf')}<div><strong>${fmtNum(sheets)}</strong><span>${pl(sheets, 'feuille non imprimée', 'feuilles non imprimées')} (estimation)</span></div>
+        <label class="eco-param">Hypothèse : <input type="number" id="sheetsIn" min="0" max="50" step="1" inputmode="numeric" value="${per}"> ${pl(per, 'feuille', 'feuilles')} par copie</label></div>
+      <div class="stat"><strong>${exams.length}</strong><span>${pl(exams.length, 'Examen créé', 'Examens créés')}</span></div>
+      <div class="stat"><strong>${results.length}</strong><span>${pl(results.length, 'Copie numérique', 'Copies numériques')}</span></div>
+      <div class="stat"><strong>${exits}</strong><span>${pl(exits, 'Alerte enregistrée', 'Alertes enregistrées')}</span></div>
+      <div class="stat"><strong>${nAnswers}</strong><span>${pl(nAnswers, 'Réponse numérique', 'Réponses numériques')}</span></div>
+    </div>
+    <p class="hint">Estimation indicative : chaque copie numérique remplace ${fmtNum(per)} ${pl(per, 'feuille', 'feuilles')} de papier. Ce chiffre n’est pas une mesure des émissions de CO₂.</p>`;
+
+  $('#cntCopies').textContent = fr.length;
+  $('#cntAlerts').textContent = fa.length;
+  $('#panel-copies').innerHTML = fr.length ? fr.map(copyCard).join('')
+    : `<div class="empty dashed">${ic('file')}<strong>Aucune copie${resFilter === 'all' ? '' : ' pour cet examen'}</strong><p>Les copies rendues par les élèves sur ce navigateur apparaîtront ici.</p><button type="button" class="btn btn-soft" data-demo>${ic('play')} Passer l’examen de démonstration</button></div>`;
+  $('#panel-alertes').innerHTML = fa.length
+    ? `<div class="table-wrap"><table><thead><tr><th>Élève</th><th>Examen</th><th>Événement</th><th>Heure</th></tr></thead><tbody>${fa.map(a => `<tr><td data-l="Élève"><strong>${esc(a.name)}</strong></td><td data-l="Examen">${esc(a.title || a.code)}</td><td data-l="Événement">${a.kind === 'info' ? '<span class="tag">Info</span> ' : ''}${esc(a.event)}</td><td data-l="Heure">${esc(a.time)}</td></tr>`).join('')}</tbody></table></div>
+       <p class="hint" style="margin-top:10px">Une sortie d’onglet n’est pas une preuve de triche : c’est un indice à interpréter avec l’élève.</p>`
+    : `<div class="empty dashed">${ic('eye')}<strong>Aucune alerte</strong><p>Les sorties d’onglet, de fenêtre ou du plein écran pendant un examen seront listées ici.</p></div>`;
+  setTab(resTab, false);
+}
+function setTab(tab, focus) {
+  resTab = tab;
+  $$('[data-tab]').forEach(b => { const on = b.dataset.tab === tab; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+  $('#panel-copies').hidden = tab !== 'copies';
+  $('#panel-alertes').hidden = tab !== 'alertes';
+}
+function updateResult(id, fn) {
+  const rs = getResults(), r = rs.find(x => x.id === id);
+  if (!r) return null;
+  fn(r); store.set(K.results, rs);
+  return r;
+}
+const commentSavers = {};
+function exportCSV() {
+  const rs = getResults().filter(r => resFilter === 'all' || r.code === resFilter);
+  if (!rs.length) return toast('Aucune copie à exporter.');
+  const rows = [['Élève', 'Examen', 'Code', 'Date', 'Score auto', 'Max auto', 'Rédaction', 'Max rédaction', 'Total', 'Maximum', 'Statut', 'Sorties détectées', 'Commentaire']];
+  rs.forEach(r => { const s = scoreOf(r); rows.push([r.name, r.title, r.code, r.date, fmtNum(s.auto), s.autoMax, s.pending ? '' : fmtNum(s.manual), s.manualMax, fmtNum(s.total), s.max, s.pending ? 'À corriger' : 'Corrigée', r.alerts, r.comment]); });
+  const csv = '﻿' + rows.map(row => row.map(c => `"${String(c ?? '').replace(/"/g, '""')}"`).join(';')).join('\r\n');
+  const url = URL.createObjectURL(new Blob([csv], { type:'text/csv;charset=utf-8' }));
+  const a = Object.assign(document.createElement('a'), { href:url, download:'resultats-audrey-eco-exam.csv' });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  toast('Fichier CSV téléchargé.', { type:'success' });
+}
+async function resetAll() {
+  if (!await confirmDlg('Tout réinitialiser ?', '<p>Les examens, les copies et les alertes enregistrés sur ce navigateur seront supprimés définitivement. L’examen de démonstration sera recréé.</p>', { ok:'Tout supprimer', danger:true })) return;
+  [K.exams, K.results, K.alerts].forEach(k => store.del(k));
+  seedDemo(); resFilter = 'all'; openCopies.clear(); renderResults();
+  toast('Démonstration réinitialisée.', { type:'success' });
+}
+function wireResults() {
+  $('#resFilter').addEventListener('change', e => { resFilter = e.target.value; renderResults(); });
+  $$('[data-tab]').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab, false)));
+  $('.tabs').addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    e.preventDefault(); setTab(resTab === 'copies' ? 'alertes' : 'copies', true);
+  });
+  $('#btnExport').addEventListener('click', exportCSV);
+  $('#btnReset').addEventListener('click', resetAll);
+  $('#liveRefresh').addEventListener('click', renderResults);
+  $('#resStats').addEventListener('change', e => {
+    if (e.target.id !== 'sheetsIn') return;
+    store.set(K.sheets, clamp(Math.round(+e.target.value) || 0, 0, 50));
+    renderResults();
+  });
+  const panel = $('#panel-copies');
+  panel.addEventListener('toggle', e => { const d = e.target; if (d.matches?.('details.copy')) d.open ? openCopies.add(d.dataset.id) : openCopies.delete(d.dataset.id); }, true);
+  panel.addEventListener('change', e => {
+    const t = e.target; if (!t.matches('[data-grade]')) return;
+    const card = t.closest('.copy'), i = +t.dataset.grade;
+    const r = updateResult(card.dataset.id, x => {
+      const max = x.questions[i].points;
+      if (t.value === '') delete x.manual[i];
+      else x.manual[i] = clamp(Math.round(+t.value * 2) / 2, 0, max);
+    });
+    if (!r) return;
+    t.value = r.manual[i] ?? '';
+    $('summary', card).innerHTML = copySummary(r);
+    toast(r.manual[i] == null ? 'Note retirée.' : `Note enregistrée : ${fmtNum(r.manual[i])}/${r.questions[i].points}.`, { type:'success', timeout:2200 });
+  });
+  panel.addEventListener('input', e => {
+    const t = e.target; if (!t.matches('[data-comment]')) return;
+    const id = t.closest('.copy').dataset.id;
+    clearTimeout(commentSavers[id]);
+    commentSavers[id] = setTimeout(() => updateResult(id, x => { x.comment = t.value; }), 400);
+  });
+  panel.addEventListener('click', async e => {
+    const z = e.target.closest('[data-zoom]');
+    if (z) {
+      const r = getResults().find(x => x.id === z.closest('.copy').dataset.id), i = +z.dataset.zoom;
+      if (r?.answers[i]?.draw) dialog({ title:`Dessin de ${r.name} — question ${i + 1}`, icon:'pencil', tone:'wide', html:`<img class="zoom-img" src="${r.answers[i].draw}" alt="Dessin de l’élève, question ${i + 1}">`, actions:[{ label:'Fermer', value:true, kind:'primary', autofocus:true }] });
+      return;
+    }
+    const del = e.target.closest('[data-act="delcopy"]');
+    if (del) {
+      const id = del.closest('.copy').dataset.id, rs = getResults(), idx = rs.findIndex(x => x.id === id);
+      if (idx < 0) return;
+      if (!await confirmDlg('Supprimer cette copie ?', `<p>La copie de <strong>${esc(rs[idx].name)}</strong> pour «&nbsp;${esc(rs[idx].title)}&nbsp;» sera supprimée.</p>`, { ok:'Supprimer', danger:true })) return;
+      const [removed] = rs.splice(idx, 1);
+      store.set(K.results, rs); renderResults();
+      toast('Copie supprimée.', { action:{ label:'Annuler', fn:() => { const now = getResults(); now.splice(Math.min(idx, now.length), 0, removed); store.set(K.results, now); renderResults(); } } });
+    }
+  });
+}
+
+/* =========================================================
+   12. Mises à jour en direct entre onglets + démarrage
+   ========================================================= */
+function onStorage(e) {
+  if (e.storageArea !== localStorage) return;
+  if (e.key && ![K.exams, K.results, K.alerts].includes(e.key)) return;
+  const results = getResults(), alerts = getAlerts();
+  if (lastCounts && currentView !== 'examen') {
+    if (results.length > lastCounts.results) toast(`Nouvelle copie reçue : ${results[results.length - 1].name}.`, { type:'success' });
+    const fresh = alerts.slice(lastCounts.alerts).filter(a => a.kind !== 'info');
+    if (alerts.length > lastCounts.alerts && fresh.length) toast(`Alerte : ${fresh[fresh.length - 1].name} — ${fresh[fresh.length - 1].event.toLowerCase()}.`, { type:'warn' });
+  }
+  lastCounts = { results: results.length, alerts: alerts.length };
+  if (currentView === 'resultats') {
+    const ae = document.activeElement;
+    if (ae && $('#view-resultats').contains(ae) && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) $('#liveRefresh').hidden = false;
+    else renderResults();
+  } else if (currentView === 'prof') renderExamList();
+  else if (currentView === 'accueil') renderHome();
+}
+
+function init() {
+  migrate();
+  seedDemo();
+  paintTheme();
+  $('#themeBtn').addEventListener('click', toggleTheme);
+  mqDark.addEventListener?.('change', paintTheme);
+  $('#dlg').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(''); });
+  document.addEventListener('click', e => {
+    const c = e.target.closest('[data-copy]'); if (c) { copyText(c.dataset.copy, c); return; }
+    if (e.target.closest('[data-demo]')) prepareExam('Élève de démonstration', DEMO_CODE);
+  });
+  wireProf(); wireStudent(); wireExam(); wireResults(); wireMonitoring();
+  window.addEventListener('storage', onStorage);
+  window.addEventListener('hashchange', route);
+  lastCounts = { results: getResults().length, alerts: getAlerts().length };
+  route(true);
+}
+init();
+})();
+</script>
+</body>
+</html>
